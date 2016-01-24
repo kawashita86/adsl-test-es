@@ -1,0 +1,361 @@
+div#results-box {
+
+  div.bottom-label {
+    bottom: 0;
+    background: #e1e1e1;
+    width: 85%;
+    margin: 0 auto;
+    position: absolute;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-bottom: 0;
+    color: #888;
+    font-size: 14px;
+    height: 22px;
+    font-weight: 300;
+    line-height: 22px;
+  }
+
+  div.offer-box {
+    margin-left: -15px;
+    margin-right: 0;
+    margin-bottom: 25px;
+    border: 1px solid silver;
+    padding: 15px 0 0;
+    border-radius: 4px;
+
+    div.offer-box-head {
+      margin-left: 0;
+      margin-bottom: 5px;
+    }
+
+    div.offer-logo {
+      height: 35px;
+      overflow: hidden;
+      text-align: center;
+      padding-right: 0;
+
+      img {
+        max-width: 100%;
+        max-height: 35px;
+      }
+    }
+
+    div.offer-name {
+      text-align: center;
+
+      a {
+        font-size: 18px;
+        font-weight: 400;
+        color: #ff950d;
+        text-decoration: none;
+        line-height: 25px;
+        letter-spacing: 0;
+      }
+
+      span {
+        font-size: 14px;
+        font-weight: 300;
+        color: #565656;
+        line-height: 16px;
+      }
+    }
+
+    div.offer-support {
+      color: #565656;
+      text-align: center;
+    }
+
+    div.offer-experience a {
+      color: #8dc901;
+      text-decoration: none;
+    }
+
+    div.offer-box-wrap {
+      background: #fff;
+      width: 100%;
+      font-size: 12px;
+      margin-left: 0;
+      border-top: 1px solid silver;
+      cursor: default;
+
+      div.gauges {
+        padding-top: 5px;
+
+        div.chart-gauge-box {
+          width: 40%;
+          text-align: center;
+          margin-left: 5%;
+          margin-right: 5%;
+          float: left;
+
+          &.gauge-support {
+            padding-top: 10px;
+          }
+        }
+
+        span.gauge-label {
+          font-size: 16px;
+          color: #565656;
+        }
+
+        span.gauge-speed {
+          font-size: 17px;
+          font-weight: 400;
+          color: #9cc700;
+        }
+      }
+
+      div.price.tlc-box {
+        height: 160px;
+
+        .mobile-bottom-label {
+          font-size: 14px;
+          color: gray;
+          font-weight: 300;
+          text-decoration: underline;
+          line-height: 20px;
+        }
+      }
+
+      div.price {
+        border-left: 1px solid silver;
+        font-size: 40px;
+        text-align: center;
+        line-height: 50px;
+        color: #ff950d;
+        font-weight: 600;
+        background: #f7f7f7;
+
+        &.default-price {
+          color: #565656;
+        }
+
+        &.tlc-box {
+          height: 160px;
+        }
+
+        span.various {
+          font-size: 14px;
+          color: #565656;
+          font-weight: 300;
+        }
+
+        span.decimal {
+          font-size: 20px;
+          font-weight: 300;
+        }
+
+      }
+
+      div.box-action {
+        padding: 10px 5px;
+        text-align: center;
+
+        a {
+          text-decoration: none;
+
+          button.active-now {
+            width: 100%;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+          }
+        }
+
+        span {
+          font-weight: 300;
+          font-size: 12px;
+          color: #565656;
+        }
+      }
+
+    }
+
+  }
+}
+
+@media #{$small_mobile}{
+
+  #results-box{
+    padding:0 5px;
+
+    .promo-box{
+      line-height:25px;
+
+      .provider-logo-img img{
+        max-height:50px
+      }
+
+      .mob-stars{
+        font-size:18px;
+        line-height:45px
+      }
+
+      h2.titlefont{
+        font-size:18px
+      }
+
+      .promo-image img{
+        max-height:70px
+      }
+    }
+    }
+  }
+  .mob-rr{
+    min-height:120px;
+    width:97%;
+    padding:5px 5px 5px 10px;margin:18px 0;
+    background:#fafafa;
+    box-shadow:0 1px 2px #aeaeae;
+
+    &.box-off{
+      margin:12.5px 0;
+    }
+
+    &.top-promo{
+      border:4px solid
+    }
+
+    .header {
+      margin-bottom: 5px;
+
+      .mob-logo{
+        max-width:130px;
+        max-height:35px;
+        background:#fdfdfd;
+        box-shadow:0 1px 1px #ededed;
+        position:absolute;top:-25px;
+        right:0;
+        padding:3px;
+        border:1px solid #dedede;
+
+        &.energy {
+          max-height:40px
+        }
+
+        &.top-promo{
+          max-height:65px;
+          right:5px;
+          top:-27px
+        }
+
+        .offer-name{
+          font-weight:600;
+          letter-spacing:-.5px;
+          line-height:15px;
+          word-wrap:break-word
+        }
+      }
+      }
+
+    .mob-cta-container{
+      line-height:20px;
+      margin-top:13.5px;
+
+      .top-promo{
+        margin-top:42.5px
+      }
+
+      .cta{
+        position:absolute;
+        width:130px;
+        border-radius:0!important;
+        right:-20px;
+        height:33px;
+        line-height:0;
+        box-shadow:0 1px 1px #aeaeae;
+
+        &.big-cta{
+          width:150px;
+          height:40px;
+          font-size:28px;
+          right:-23px;
+        }
+      }
+    }
+
+    .mob-info-link{
+      cursor:pointer;
+      padding:7px 10px 0;
+      bottom:-5px;
+      background:#EEE;
+      border:1px solid silver;
+      border-bottom:none;
+      border-radius:5px 5px 0 0!important}
+}
+
+@media #{$mobile} {
+  .mob-rr {
+    min-height: 120px;
+    width: 97%;
+    padding: 5px 5px 5px 10px;
+    margin: 18px 0;
+    background: #fafafa;
+    box-shadow: 0 1px 2px #aeaeae;
+
+    .header {
+      margin-bottom: 5px;
+
+      .mob-logo {
+        max-width: 130px;
+        max-height: 35px;
+        background: #fdfdfd;
+        box-shadow: 0 1px 1px #ededed;
+        position: absolute;
+        top: -25px;
+        right: 0;
+        padding: 3px;
+        border: 1px solid #dedede;
+      }
+    }
+
+    .offer-name {
+      font-weight: 600;
+      letter-spacing: -.5px;
+      line-height: 15px;
+      word-wrap: break-word;
+    }
+
+    .mob-info-link {
+      cursor: pointer;
+      padding: 7px 10px 0;
+      bottom: -5px;
+      background: #EEE;
+      border: 1px solid silver;
+      border-bottom: none;
+      border-radius: 5px 5px 0 0!important;
+    }
+
+    .mob-cta-container {
+      line-height: 20px;
+      margin-top: 13.5px;
+
+      .cta {
+        position: absolute;
+        width: 130px;
+        border-radius: 0!important;
+        right: -20px;
+        height: 33px;
+        line-height: 0;
+        box-shadow: 0 1px 1px #aeaeae;
+
+      }
+    }
+  }
+}
+
+@media #{$small_tablet}{
+  .mob-rr {
+    min-height: 120px;
+    width: 70%;
+    padding: 5px 5px 5px 10px;
+    margin: 18px 15%;
+    background: #fafafa;
+    -webkit-box-shadow: 0 1px 2px #aeaeae;
+    -moz-box-shadow: 0 1px 2px #aeaeae;
+    -o-box-shadow: 0 1px 2px #aeaeae;
+    -ms-box-shadow: 0 1px 2px #aeaeae;
+    box-shadow: 0 1px 2px #aeaeae;
+  }
+}

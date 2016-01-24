@@ -1,0 +1,16 @@
+{
+    "extends": "xo",
+    "env": {
+        "node": false,
+        "browser": true,
+        "es6": false
+    },
+    "globals": {
+        "define": false,
+        "require": false
+    },
+    "rules": {
+        "indent": [2, 4, {"SwitchCase": 1}],
+        "no-invalid-this": 2
+    }
+}

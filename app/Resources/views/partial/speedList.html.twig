@@ -1,0 +1,7 @@
+<ul>
+{% for row in results %}
+    <li>{{ row.downloadSpeed|bandwidth_filter }} Mbsp di {{ row.provider|upper }} a {{ row.ipAddress }}</li>
+{% else %}
+    <li><em>Nessun risultato registrato</em></li>
+{% endfor %}
+</ul>

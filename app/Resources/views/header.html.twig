@@ -1,0 +1,24 @@
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed" aria-controls="navbar" aria-expanded="false" data-target="#navbar"
+                    data-toggle="collapse" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Adsl-test.it</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a {% if app.request.get('_route') == 'homepage' %}class="active" href="javascript:;"{% else %}href="{{ path('homepage') }}"{% endif %}>Misura velocità ADSL</a>
+                </li>
+                <li>
+                    <a {% if app.request.get('_route') == 'adsl_compare' %}class="active" href="javascript:;"{% else %}href="{{ path('adsl_compare') }}"{% endif %}>Le ADSL più veloci</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

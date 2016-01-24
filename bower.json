@@ -1,0 +1,16 @@
+{
+  "name": "adslTestEs",
+  "private": true,
+  "dependencies": {
+    "bootstrap-sass-official": "~3.3.0",
+    "requirejs": "2.1.15",
+    "almond": "~0.3.0",
+    "visionmedia-debug": "~2.2.0",
+    "appcache-nanny": "~1.0.3",
+    "picturefill": "~3.0.1",
+    "modernizr": "~2.8.3",
+    "typeahead.js": "~0.11.1",
+    "components-font-awesome": "*",
+    "raphael": "~2.1.4"
+  }
+}

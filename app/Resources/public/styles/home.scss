@@ -1,0 +1,331 @@
+$small_mobile: "(max-width: 479px)";
+$mobile: "(min-width: 480px) and (max-width:587px)";
+$small_tablet: "(min-width: 588px) and (max-width:767px)";
+$tablet: "(min-width: 768px) and (max-width: 1023px)";
+$desktop: "(min-width: 1024px)";
+
+
+.btn-big {
+  background-color: #58ce21;
+  border-radius: 4px;
+  color: white;
+  display: inline-block;
+  font-size: 18px;
+  margin-left: 10px;
+  padding: 20px 40px;
+  transition: all 500ms ease 0s;
+  vertical-align: baseline;
+}
+
+.section-padding {
+  padding-bottom: 40px;
+  padding-top: 40px;
+}
+
+.section-alternative {
+  background-color: #f5f7fa;
+  padding-bottom: 50px;
+  padding-top: 50px;
+  border-top: 1px solid #d9d9d9;
+}
+
+.speed-test-sample {
+}
+
+.big-input {
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 18px;
+  margin-bottom: 0;
+  padding: 20px;
+}
+
+.hidden-step {
+  display: none;
+}
+
+.small-title {
+  color: #ff950d;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 30px;
+  margin-bottom: 10px;
+}
+
+#verifica-copertura {
+  input,
+  select {
+    text-transform: uppercase;
+  }
+}
+
+#data-wrapper {
+  .label {
+    display: inline-block;
+    font-weight: bold;
+    color: #151515;
+  }
+
+  #ping {
+    background-color: transparent;
+    border: medium none;
+    clear: both;
+    display: inline-block;
+    height: auto;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+
+    .results {
+      position: relative;
+      top: 0;
+    }
+
+    .label {
+      background: rgba(0, 0, 0, 0) url("../img/ping-icon.png") no-repeat scroll 0 center;
+      font-size: 1.6rem;
+      margin: 0 5px 0 0;
+      padding: 0 0 0 22px;
+    }
+
+    .data {
+      color: #151515;
+      display: inline-block;
+      font-size: 1.8rem;
+    }
+    .metrics {
+      margin: 0 0 0 5px;
+    }
+
+    span.label {
+      display: none;
+    }
+  }
+
+  #status {
+    float: left;
+    width: 55%;
+  }
+
+  .element {
+    border: 1px solid #d7d7d7;
+    display: block;
+    font-size: 1.6rem;
+    margin: 0 0 2%;
+    padding: 15px 10px;
+    width: 100%;
+    border-radius: 4px;
+  }
+
+  .element span {
+    display: table-cell;
+    width: auto;
+  }
+
+  .element .label {
+    border-right: 1px solid #d3d3d3;
+    color: #878787;
+    font-size: 1.4rem;
+    padding: 0 10px 0 0;
+  }
+
+  .element .data {
+    font-size: 1.4rem;
+    padding: 0 0 0 10px;
+    font-weight: bold;
+  }
+
+  #ip {
+    float: right;
+    width: 43%;
+    .data {
+      background: rgba(0, 0, 0, 0) no-repeat scroll 5px center;
+      padding: 0 0 0 20px;
+      white-space: nowrap;
+    }
+
+  }
+
+  #results-area {
+    margin: 0 0 4%;
+  }
+  #provider {
+    clear: both;
+  }
+
+  .bandwidth-circle .results {
+    height: auto;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: 32%;
+    width: 100%;
+    z-index: 10;
+  }
+
+  .bandwidth-circle .results .data {
+    font-size: 3.8em;
+  }
+  .bandwidth-circle .results .data {
+    color: #151515;
+    font-size: 3.2em;
+    font-weight: bolder;
+    line-height: 1.4;
+  }
+
+  .bandwidth-circle svg {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+  #download {
+    float: left;
+    width: 45%;
+    &::before {
+      background-image: url("../img/down-icon.png");
+    }
+  }
+  .bandwidth-circle {
+    position: relative;
+
+    &::before {
+      background: rgba(0, 0, 0, 0) none no-repeat scroll center 0 / 60% auto;
+      content: "";
+      display: block;
+      height: 5em;
+      left: 0;
+      margin: 0 auto;
+      position: absolute;
+      right: 0;
+      top: 1em;
+      width: 5em;
+      z-index: 10;
+    }
+  }
+
+  #upload {
+    float: right;
+    width: 45%;
+    &::before {
+      background-image: url("../img/up-icon.png");
+    }
+  }
+
+}
+
+@media #{$mobile}, #{$small_mobile} {
+
+
+  .section-padding {
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+
+  .big-input {
+    padding: 15px;
+    width: 45%;
+  }
+
+  .btn.btn-big {
+    padding: 15px;
+    width: 50%;
+
+    &#go-copertura {
+      margin-top: 15px;
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+  #data-wrapper {
+    #download, #upload, #ping {
+      position: relative;
+      width: 32%;
+      height: 115px;
+      margin: 0 2% 0 0;
+      padding: 60px 1.5% 1.5%;
+      background-color: #fff;
+      border: 1px solid #d7d7d7;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      -ms-border-radius: 4px;
+      border-radius: 4px;
+    }
+    #download:before, #upload:before, #ping:before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 21px;
+      height: 25px;
+      top: 12%;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0) url("../img/mobile-data-icons-sprite.png") no-repeat scroll 0 0
+    }
+    #download svg, #upload svg, #ping svg {
+      display: none
+    }
+    #download .results, #upload .results, #ping .results {
+      position: relative;
+      top: 0;
+      text-align: center
+    }
+    #download .label, #upload .label, #ping .label {
+      margin: 0;
+      padding: 0;
+      font-size: 10px;
+      font-size: 1rem;
+      font-weight: normal;
+      background: none;
+    }
+    #download .data, #upload .data, #ping .data {
+      font-size: 22px;
+      font-size: 2.2rem;
+      font-weight: bolder;
+      line-height: 1
+    }
+    #download:before {
+      background-position: 0 0
+    }
+    #download .data {
+      color: #5cb85c
+    }
+    #upload:before {
+      background-position: 0 -26px
+    }
+    #upload .data {
+      color: #d9534f
+    }
+    #ping {
+      margin: 0 2% 0 0;
+    }
+    #upload {
+      margin: 0;
+    }
+    #ping:before {
+      background-position: 0 -52px
+    }
+    #ping b.label {
+      display: none
+    }
+    #ping span.label {
+      display: inline-block
+    }
+    #ping .data {
+      display: block;
+      color: #e13e01
+    }
+    #ping .metrics {
+      margin: 0 5px 0 0;
+      font-size: 10px;
+      font-size: 1rem;
+      font-weight: normal
+    }
+
+    #ip .data {
+      padding: 0 0 0 10px;
+    }
+  }
+}

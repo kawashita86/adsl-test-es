@@ -1,0 +1,26 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+    app.speed_test.handler.class: AppBundle\Handler\SpeedTestHandler
+    app.speed_test.class: AppBundle\Entity\SpeedTest
+    app.speed_test.type.class: AppBundle\Form\SpeedTestType
+    app.speed_test.type.name : ''
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    app.speed_test.handler:
+        class: %app.speed_test.handler.class%
+        arguments: ['@doctrine.orm.entity_manager', '%app.speed_test.class%', '@form.factory']
+    app.speed_test.type:
+        class: AppBundle\Form\SpeedTestType
+        tags:
+            - {name: form.type, alias: speedtest_form }
+        arguments: ['%app.speed_test.type.class%']
+    app.twig_extension:
+        class: AppBundle\Twig\BandwidthFilter
+        public: false
+        tags:
+            - { name: twig.extension }

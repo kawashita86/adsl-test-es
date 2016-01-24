@@ -1,0 +1,8 @@
+app:
+    resource: @AppBundle/Controller/DefaultController.php
+    type:     annotation
+
+ajax:
+    resource: @AppBundle/Controller/AjaxController.php
+    type:     annotation
+    prefix: ajax

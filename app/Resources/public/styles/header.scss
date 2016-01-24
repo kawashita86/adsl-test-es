@@ -1,0 +1,46 @@
+.navbar.navbar-default {
+  height: 80px;
+  padding-top: 18px;
+  background-color: #ffffff;
+  transition: all 0.4s ease;
+
+  #navbar a {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    vertical-align: top;
+    padding: 12px 24px;
+
+    &.active{
+      background-color: #58ce21;
+      border-radius: 4px;
+      color: white;
+      font-weight: 400;
+      padding: 12px 24px;
+      transition: all 500ms ease 0s;
+      display: inline-block;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      text-align: left;
+      text-decoration: none;
+      vertical-align: top;
+    }
+  }
+
+
+  &.sticky {
+    font-size: 24px;
+    height: 48px;
+    background: #f4f4f4 ;
+    text-align: left;
+    position: fixed;
+    width: 100%;
+    padding-top: 0;
+
+  }
+
+}
