@@ -38,7 +38,11 @@ require.config({
         picturefill: 'picturefill/dist/picturefill',
         'visionmedia-debug': 'visionmedia-debug/dist/debug',
         raphael: 'raphael/raphael',
-        typeahead: 'typeahead.js/dist/typeahead.bundle'
+        typeahead: 'typeahead.js/dist/typeahead.bundle',
+        bloodhound: 'typeahead.js/dist/bloodhound',
+        'bootstrap-validator': 'bootstrap-validator/dist/validator.min',
+        'remarkable-bootstrap-notify': 'remarkable-bootstrap-notify/bootstrap-notify',
+        'bootstrap-star-rating': 'bootstrap-star-rating/js/star-rating.min'
     },
     shim: {
         bootstrap: {
@@ -118,6 +122,14 @@ require.config({
             deps: [
                 'jquery'
             ]
+        },
+        typeahead: {
+            deps: [
+                'jquery'
+            ],
+            init: function ($) {
+    return require.s.contexts._.registry['typeahead.js'].factory( $ );
+}
         }
     },
     packages: [

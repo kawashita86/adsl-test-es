@@ -1,6 +1,6 @@
 /* jshint -W098,-W079 */
 var require = {
-    baseUrl: 'bower_components',
+    baseUrl: '/bower_components',
     paths: {
         main: '../app/Resources/public/scripts/main',
         app: '../app/Resources/public/scripts/app',
@@ -24,7 +24,10 @@ var require = {
         picturefill: 'picturefill/dist/picturefill',
         raphael: 'raphael/raphael',
         typeahead: 'typeahead.js/dist/typeahead.bundle',
-        bloodhound: 'typeahead.js/dist/bloodhound'
+        bloodhound: 'typeahead.js/dist/bloodhound',
+        'bootstrap-validator': 'bootstrap-validator/dist/validator.min',
+        'remarkable-bootstrap-notify': 'remarkable-bootstrap-notify/bootstrap-notify',
+        'bootstrap-star-rating': 'bootstrap-star-rating/js/star-rating.min'
     },
     shim: {
         bootstrap: {
@@ -110,8 +113,8 @@ var require = {
                 'jquery'
             ],
             init: function ($) {
-            return require.s.contexts._.registry['typeahead.js'].factory( $ );
-        }
+return require.s.contexts._.registry['typeahead.js'].factory( $ );
+}
         }
     },
     packages: [

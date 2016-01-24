@@ -1,20 +1,20 @@
-<h3>Ultime velocità rilevate</h3>
-<ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active">
+<h3 class="orange">Ultime velocità rilevate</h3>
+<ul class="nav nav-tabs last-results">
+    <li role="presentation">
         <a href="#today" aria-controls="today" role="tab" data-toggle="tab">Oggi</a>
     </li>
-    <li role="presentation">
+    <li role="presentation" class="active">
         <a href="#top-week" aria-controls="top-week" role="tab" data-toggle="tab">Top Settimana</a>
     </li>
     <li role="presentation">
         <a href="#top-month" aria-controls="top-month" role="tab" data-toggle="tab">Top Mese</a>
     </li>
 </ul>
-<div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="home">
+<div class="tab-content last-results">
+    <div role="tabpanel" class="tab-pane" id="today">
         {%  include('partial/speedList.html.twig') with { 'results': activity['today'] }  %}
     </div>
-    <div role="tabpanel" class="tab-pane" id="top-week">
+    <div role="tabpanel" class="tab-pane active" id="top-week">
         {% include('partial/speedList.html.twig') with { 'results': activity['topweek'] }  %}
     </div>
     <div role="tabpanel" class="tab-pane" id="top-month">

@@ -85,14 +85,14 @@ class ComparaWebService {
         foreach($this->results as &$offer){
             $offer['start_price_decimal'] = '.00';
             $offer['default_price_decimal'] = '.00';
-            if($offer['start_price'] == (string)(float)$offer){
+            if(strpos($offer['start_price'], '.') !== false){
                 $start_price = explode('.', (string)$offer['start_price']);
-                $offer['start_price'] = $start_price[0];
+                $offer['start_price'] = (int)$start_price[0];
                 $offer['start_price_decimal'] = '.'.$start_price[1];
             }
-            if($offer['default_price'] == (string)(float)$offer){
+            if(strpos($offer['default_price'], '.') !== false){
                 $start_price = explode('.', (string)$offer['default_price']);
-                $offer['default_price'] = $start_price[0];
+                $offer['default_price'] = (int)$start_price[0];
                 $offer['default_price_decimal'] = '.'.$start_price[1];
             }
         }

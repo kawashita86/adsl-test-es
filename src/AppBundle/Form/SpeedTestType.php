@@ -28,7 +28,8 @@ class SpeedTestType extends AbstractType
             ->add('longitude')
             ->add('ping')
             ->add('provider')
-            ->add('city');
+            ->add('city')
+            ->add('takenTestId');
 
     }
 

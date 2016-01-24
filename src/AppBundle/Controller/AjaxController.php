@@ -22,12 +22,7 @@ class AjaxController extends Controller
      */
     public function saveResultAction(Request $request)
     {
-
-       // $content = $request->getContent();
-      //  if (!empty($content)) {
             try {
-
-             //   $data = json_decode($content, true);
                 $speedTest = $this->container->get('app.speed_test.handler')->post(
                     $request->request->all()
                 );
@@ -36,11 +31,23 @@ class AjaxController extends Controller
             } catch (InvalidFormException $e) {
                 return new JsonResponse(['error' => $e->getMessage()], '403');
             }
-      //  } else
-     //   {
-     //       return new JsonResponse(['error' => 'empty request', 'content' => $request->getContent()], '403');
-    //    }
+    }
 
+    /**
+     * @param Request $request
+     * @Route("/get-specific-offers", name="get_specific_offers")
+     * @Method("POST")
+     */
+    public function getSpecificOffersAction(Request $request)
+    {
+        if (!($speedtest = $this->container->get('app.speed_test.handler')->get($request->get('id')))) {
+            throw new NotFoundHttpException(sprintf('The resource \'%s\' was not found.', $request->get('id')));
+        }
+
+        return $this->render('controller/ajax/specificOffers.html.twig', [
+            'adsl_speedtest' => $speedtest,
+            'tariffs' => []
+        ]);
     }
 
     /**

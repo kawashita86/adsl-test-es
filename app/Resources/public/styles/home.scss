@@ -1,14 +1,7 @@
-$small_mobile: "(max-width: 479px)";
-$mobile: "(min-width: 480px) and (max-width:587px)";
-$small_tablet: "(min-width: 588px) and (max-width:767px)";
-$tablet: "(min-width: 768px) and (max-width: 1023px)";
-$desktop: "(min-width: 1024px)";
-
-
 .btn-big {
   background-color: #58ce21;
   border-radius: 4px;
-  color: white;
+  color: $white;
   display: inline-block;
   font-size: 18px;
   margin-left: 10px;
@@ -22,17 +15,34 @@ $desktop: "(min-width: 1024px)";
   padding-top: 40px;
 }
 
+.section-basic {
+  padding-top: 25px;
+}
+
 .section-alternative {
   background-color: #f5f7fa;
-  padding-bottom: 50px;
-  padding-top: 50px;
+  padding-bottom: 30px;
+  padding-top: 30px;
   border-top: 1px solid #d9d9d9;
+  border-bottom: 1px solid#d9d9d9;
+
+  &.section-header {
+    padding-top: 0;
+    padding-bottom: 30px;
+    border-top: 0;
+  }
 }
 
 .speed-test-sample {
 }
 
-.big-input {
+#comune_provider,
+#start_speed_test{
+  width:48%;
+}
+
+
+#comune_provider.big-input {
   border: 1px solid #e6e6e6;
   border-radius: 4px;
   display: inline-block;
@@ -56,8 +66,11 @@ $desktop: "(min-width: 1024px)";
 #verifica-copertura {
   input,
   select {
-    text-transform: uppercase;
   }
+}
+
+#sample-test-img {
+  display:inline;
 }
 
 #data-wrapper {
@@ -106,6 +119,10 @@ $desktop: "(min-width: 1024px)";
   #status {
     float: left;
     width: 55%;
+  }
+
+  #speedo-provider img {
+    height: 25px;
   }
 
   .element {
@@ -214,9 +231,35 @@ $desktop: "(min-width: 1024px)";
 
 }
 
+.rating-container {
+  color: $red;
+  .rating-stars {
+    color: $green;
+  }
+}
+
 @media #{$mobile}, #{$small_mobile} {
 
+  #verifica-copertura {
+    input,
+    select {
+      margin-bottom:8px;
 
+      &.form-control[disabled] {
+        background-color: #eeeeee!important;
+      }
+
+      &.form-control.tt-hint {
+        background-color:transparent!important;
+      }
+    }
+
+    .btn-big {
+      width: 100%;
+      margin-left:0;
+      padding: 15px;
+    }
+  }
   .section-padding {
     padding-bottom: 20px;
     padding-top: 20px;

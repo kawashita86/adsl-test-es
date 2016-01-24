@@ -31,17 +31,17 @@
 
 <div class="section-basic">
     <div class="container">
-        <h1>Offerte ADSL: confronto tariffe Internet e Telefono</h1>
-        <h2 class="hidden-sm">Trova la soluzione più adatta alle tue esigenze. Puoi risparmiare oltre 400€ sul telefono di casa e l'ADSL, con il massimo della qualità.</h2>
+        <h1 class="orange mobile-title">Offerte ADSL: confronto tariffe Internet e Telefono</h1>
+        <br/>
     </div>
-    <div class="container">
+    <div class="container nopadding">
         <div id="results-box" class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
             {% for offer in offers %}
               <!-- MOBILE OFFER -->
                 <div class="col-xs-12 hidden-sm hidden-md hidden-lg mob-rr">
                     <div class="col-xs-5 col-xs-offset-7 col-sm-5 col-sm-offset-7 header">
                         <a data-toggle="modal" href="#provider-details-{{ loop.index }}">
-                            <img src="https://www.comparasemplice.it/images/brands/adsl/eolo.png" alt="Offerte Eolo: tariffe adsl e telefono e tariffe aggiornate" title="Eolo" class="mob-logo">
+                            <img src="{{ asset('img/brands/provider/'~offer.id_provider~'.png') }}" alt="Offerte Eolo: tariffe adsl e telefono e tariffe aggiornate" title="Eolo" class="mob-logo">
                         </a>
                     </div>
                     <div class="col-xs-7 col-sm-7 nopadding">
@@ -69,7 +69,7 @@
                         </div>
                         <br>
                         {%  endif %}
-                        <a href="{{ offer.link  }}" target="_blank" onclick="ga('send','pageview','/click-procedi-offerta-{{ offer.id }}')" title="Procedi con {{ offer.name }}">
+                        <a href="{{ offer.link }}" target="_blank" onclick="ga('send','pageview','/click-procedi-offerta-{{ offer.id }}')" title="Procedi con {{ offer.name }}">
                             <button class="btn-big cta mid">PROCEDI</button>
                         </a>
                     </div>
@@ -79,9 +79,9 @@
                 <!-- HEADER OFFER -->
                 <div class="row offer-box-head">
                     <div class="col-md-2 col-lg-2 col-sm-5 col-xs-5 offer-logo">
-                        <img data-original="{{ asset('images/brands/adsl/infostrada.png') }}" class="lazy"
+                        <img data-original="{{ asset('img/brands/provider/'~offer.id_provider~'.png') }}" class="lazy"
                              alt="Offerte Infostrada: tariffe adsl e telefono e tariffe aggiornate" title="Infostrada"
-                             src="{{ asset('images/brands/adsl/infostrada.png') }}" style="display: inline;">
+                             src="{{ asset('img/brands/provider/'~offer.id_provider~'.png') }}" style="display: inline;">
                     </div>
                     <div class="col-md-5 col-lg-5 col-sm-7 col-xs-7 offer-name text-center">
                         <a href="{{ offer.link }}" onclick="ga('send','pageview','/click-{{ offer.link }}')"
@@ -99,8 +99,6 @@
                          class="col-md-2 col-lg-2 hidden-xs hidden-sm offer-experience"
                          data-original-title="Qualità dell'assistenza">
                         <a class="simple-link" style="color:#9EE200 !important;"
-                           title="{{ offer.id_provider }} - Scheda valutazione e assistenza"
-                           alt="{{ offer.id_provider }} - Scheda valutazione e assistenza"
                            href="https://www.comparasemplice.it/fornitori/adsl/infostrada/">
                             <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
                                     class="fa fa-star-o"></i><i class="fa fa-star-o"></i>
@@ -111,6 +109,7 @@
                 <div class="row offer-box-wrap">
                     <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 gauges">
                         <div class="chart-gauge-box gauge-support text-center">
+                            <center>
                             <div class="chart-gauge-download chart-gauge hidden-xs hidden-sm" data-speed="{{ offer.speed_download }}" data-label="Download" id="download-gauge-{{ loop.index }}">
                                 <br />
                                 <span >Calcolo velocità...</span>
@@ -119,8 +118,10 @@
                             <span class="gauge-label">Download</span>
                             <br>
                             <span class="gauge-speed">{{ offer.speed_download }} Mbps</span>
+                            </center>
                         </div>
                         <div class="chart-gauge-box gauge-support text-center">
+                            <center>
                             <div class="chart-gauge-upload chart-gauge hidden-xs hidden-sm" data-speed="{{ offer.speed_upload }}" data-label="Upload" id="upload-gauge-{{ loop.index }}">
                                 <br />
                                 <span>Calcolo velocità...</span>
@@ -130,10 +131,11 @@
                             <br>
                             <span class="gauge-speed">{{ offer.speed_upload }} Mbps</span>
                         </div>
+                        </center>
                     </div>
                     <div class="col-md-3 col-lg-3 hidden-xs hidden-sm tlc-box price default-price">
-                        {%  if(offer.promo_price_expire == "") %}
-                        <span class="col-xs-12 m10 various">Prezzo promo indicato</span>
+                        {%  if(offer.promo_price_expire == "standard") %}
+                        <span class="col-xs-12 m10 various" style="line-height: 32px;">Prezzo promo indicato</span>
     			<span class="bold col-xs-12 midsmall nopadding line-compacted green">
     			     <span class="txt-light">Valido</span> PER SEMPRE!</span>
                         <div data-toggle="tooltip" data-placement="bottom"
@@ -141,7 +143,7 @@
                             Che significa?
                         </div>
                         {% else %}
-                        <span class="col-xs-12 various">Prezzo dopo {{ offer.promo_price_expire }}</span>
+                        <span class="col-xs-12 various" style="line-height: 32px;">Prezzo dopo {{ offer.promo_price_expire }}</span>
                         <br />
                         {{ offer.default_price }}<span class='decimal'>{{ offer.default_price_decimal }}</span> <span class="various">&euro;/mese</span>
                         <div data-toggle="tooltip" data-placement="bottom"
@@ -159,23 +161,6 @@
                              data-toggle="modal" href="#price-details-{{ loop.index }}">
                             Maggiori informazioni
                         </div>
-                        <!-- Countdown wrapper -->
-                       <!-- <div class="pull-left countdown_wrapper">
-                            <span class="col-md-12 col-lg-12 text-center cd-label">Scade tra:</span>
-                            <div class="col-xs-12 nopadding countdown_container" data-id="5">
-                                <div class="col-xs-12 nopadding cd-numbers-wrapper">
-                                    <span class="days">01</span><span class="hours" style="margin-right:0">13</span>
-                                    <span class="minutes" style="margin-left:0">51</span><span class="seconds">04</span>
-                                </div>
-                                <div class="col-xs-12 cd-label-wrapper">
-                                    <p class="days_text">Giorni</p>
-                                    <p class="hours_text">Ore</p>
-                                    <p class="minutes_text">Min</p>
-                                    <p class="seconds_text">Sec</p>
-                                </div>
-                            </div>
-                        </div> -->
-                        <!-- END Countdown wrapper -->
                         <div class="hidden-xs hidden-sm bottom-label" data-toggle="modal" href="#price-details-{{ loop.index }}">
                             Maggiori informazioni
                         </div>
@@ -196,12 +181,3 @@
 </div>
 
 {% endblock %}
-        {% block javascripts %}
-            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-            {% if app.environment == 'node' %}
-                <script type="text/javascript" src="scripts/config.js"></script>
-                <script type="text/javascript" data-main="main" src="bower_components/requirejs/require.js"></script>
-            {% else %}
-                <script type="text/javascript" src="{{ asset('scripts/results.js') }}"></script>
-            {% endif %}
-        {% endblock %}

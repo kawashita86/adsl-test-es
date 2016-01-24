@@ -154,5 +154,22 @@ interface SpeedTestInterface {
      */
     public function getCity();
 
+    /**
+     * Set takenTestId
+     *
+     * @param string $takenTestId
+     *
+     * @return SpeedTest
+     */
+    public function setTakenTestId($takenTestId);
+
+    /**
+     * Get takenTestId
+     *
+     * @return string
+     */
+    public function getTakenTestId();
+
+
 
 }

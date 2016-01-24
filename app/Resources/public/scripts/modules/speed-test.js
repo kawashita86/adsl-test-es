@@ -2,6 +2,10 @@
 define(function (require, exports) {
     'use strict';
     var $ = require('jquery');
+    var utility = require('./utility');
+    require('bootstrap');
+    require('remarkable-bootstrap-notify');
+
 
     exports.startSpeedTest = function startSpeedTest() {
         $('#sample-test-img').hide();
@@ -36,24 +40,48 @@ define(function (require, exports) {
         dataSend.uploadSpeed = (obj.TakenTest.Upload.speedInKbps) ? obj.TakenTest.Upload.speedInKbps : '';
         dataSend.ipAddress = (obj.TakenTest.User.Location.IPAddress) ? obj.TakenTest.User.Location.IPAddress : '';
         dataSend.ping = (obj.TakenTest.Ping.time) ? obj.TakenTest.Ping.time : '';
-        dataSend.latitude = "xx";
-        dataSend.longitude = "xx";
+        dataSend.takenTestId = (obj.TakenTestId) ? obj.TakenTestId : '';
+        dataSend.city = utility.getFromStorage('city');
+        var ispInfo = utility.getIspInformation();
+        if(ispInfo !== false) {
+            var location = ispInfo.loc.split(',');
+            dataSend.latitude = location[0];
+            dataSend.longitude = location[1];
+        } else {
+            dataSend.latitude = "";
+            dataSend.longitude = "";
+        }
         $.ajax({
             url: "/ajax/save-result",
             type: 'POST',
             data: dataSend,
             dataType: 'json',
             success: function(data){
-                if(typeof data.id !== 'undefined')
-                    location.href =  "/adsl-result/" + id;
+                if(typeof data.id !== 'undefined') {
+                    window.location += "/adsl-result/" + id;
+                    //set results in window, show screenshow + share results and load tariff
+                    loadResultsTariff();
+                    setResults();
+
+                }
                 else
                     alert('error');
             },
             error: function() {
+                $.notify({ message: 'aaaa'}, {type: 'danger'});
                 //  toastit("ERRORE! Test della velocità fallito!")
             }
         });
     }
 
+    function loadResultsTariff()
+    {
+
+    }
+
+    function setResults()
+    {
+
+    }
 
 });

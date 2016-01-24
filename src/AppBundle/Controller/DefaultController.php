@@ -36,8 +36,6 @@ class DefaultController extends Controller
             throw new NotFoundHttpException(sprintf('The resource \'%s\' was not found.', $result_hash));
         }
 
-
-
         return $this->render('controller/default/adslResult.html.twig', [
            'adsl_speedtest' => $speedtest,
            'activity' => $this->getActivityBlock(),

@@ -1,8 +1,9 @@
 .navbar.navbar-default {
   height: 80px;
   padding-top: 18px;
-  background-color: #ffffff;
+  background-color: $white;
   transition: all 0.4s ease;
+  margin-bottom: 0;
 
   #navbar a {
     display: inline-block;
@@ -43,4 +44,38 @@
 
   }
 
+}
+
+
+@media #{$mobile}, #{$small_mobile}{
+  .navbar.navbar-default {
+
+    #navbar {
+      margin-top:10px;
+    }
+
+    #navbar li {
+      border-radius: 0;
+    }
+
+    #navbar ul {
+      margin:0 -15px;
+    }
+
+    #navbar  a {
+      width: 100%;
+      background-color: $white;
+      border-bottom: 1px solid $grey;
+
+      &:not(.active):hover {
+        color: $darkgrey;
+        background-color: $lightgrey;
+      }
+      &.active {
+        border-radius: 0;
+      }
+
+
+    }
+  }
 }

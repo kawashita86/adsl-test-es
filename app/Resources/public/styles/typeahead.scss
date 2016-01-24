@@ -1,0 +1,115 @@
+//@extend-elements
+//original selectors
+//span.twitter-typeahead .tt-menu, span.twitter-typeahead .tt-dropdown-menu
+%extend_1 {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 200px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  list-style: none;
+  font-size: 14px;
+  text-align: left;
+  background-color: $white;
+  border: 1px solid $grey;
+  border: 1px solid $transparent;
+  border-radius: 4px;
+  box-shadow: 0 6px 12px $more_transparent;
+  background-clip: padding-box;
+}
+
+//original selectors
+//span.twitter-typeahead .tt-suggestion.tt-cursor, span.twitter-typeahead .tt-suggestion:hover, span.twitter-typeahead .tt-suggestion:focus
+%extend_2 {
+  color: $white;
+  text-decoration: none;
+  outline: 0;
+  background-color: $blue;
+}
+
+
+.input-group {
+  &.input-group-lg span.twitter-typeahead {
+    height: 46px;
+    .form-control {
+      height: 46px;
+      padding: 10px 16px;
+      font-size: 18px;
+      line-height: 1.3333333;
+      border-radius: 6px;
+    }
+    .tt-menu {
+      top: 46px !important;
+    }
+    .tt-dropdown-menu {
+      top: 46px !important;
+    }
+  }
+  &.input-group-sm span.twitter-typeahead {
+    height: 30px;
+    .form-control {
+      height: 30px;
+      padding: 5px 10px;
+      font-size: 12px;
+      line-height: 1.5;
+      border-radius: 3px;
+    }
+    .tt-menu {
+      top: 30px !important;
+    }
+    .tt-dropdown-menu {
+      top: 30px !important;
+    }
+  }
+  span.twitter-typeahead {
+    display: block !important;
+    height: 34px;
+    .tt-menu {
+      top: 32px !important;
+    }
+    .tt-dropdown-menu {
+      top: 32px !important;
+    }
+    &:not(:first-child):not(:last-child) .form-control {
+      border-radius: 0;
+    }
+    &:first-child .form-control {
+      border-radius: 0 4px 4px 0;
+    }
+    &:last-child .form-control {
+      border-radius: 0 4px 4px 0;
+    }
+  }
+}
+span.twitter-typeahead {
+  width: 100%;
+  display: inline!important;
+  .tt-menu {
+    @extend %extend_1;
+  }
+  .tt-dropdown-menu {
+    @extend %extend_1;
+  }
+  .tt-suggestion {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: $darkgrey;
+    white-space: nowrap;
+    &.tt-cursor {
+      @extend %extend_2;
+    }
+    &:hover {
+      @extend %extend_2;
+    }
+    &:focus {
+      @extend %extend_2;
+    }
+  }
+}

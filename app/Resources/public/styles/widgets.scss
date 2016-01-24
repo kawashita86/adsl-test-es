@@ -1,0 +1,63 @@
+.last-results.nav-tabs {
+  > li {
+    a {
+      color: #333333;
+      background-color: transparent;
+    }
+    &.active a {
+      background-color: #58ce21;
+      color: #ffffff;
+    }
+  }
+
+}
+
+.last-results.tab-content {
+    .tab-pane {
+      ul {
+        list-style: none;
+        padding-left: 0;
+
+        li {
+          padding: 8px 12px;
+
+          &:nth-child(odd) {
+            background-color: $lightgrey;
+          }
+
+          &:nth-child(even) {
+           // background-color: $white;
+          }
+
+        }
+      }
+    }
+  }
+
+#top-providers {
+  div {
+    img.img-responsive {
+      display:inline;
+    }
+
+    &#pole-1{
+       img.price-image {
+         width: 75%;
+       }
+    }
+    &#pole-2{
+      img.price-image {
+        width: 60%;
+        margin-top:30px;
+      }
+    }
+    &#pole-3{
+      img.price-image {
+        width: 45%;
+        margin-top:50px;
+      }
+    }
+  }
+}
+
+

@@ -16,17 +16,20 @@ define(function (require, exports) {
     var speedtest = require('./modules/speed-test');
     var utility = require('./modules/utility');
     var typeahead = require('typeahead');
- //   var googleChart = require('./modules/google-chart');
     require('bloodhound');
     require('bootstrap');
+    require('remarkable-bootstrap-notify');
+    require('bootstrap-star-rating');
 
     exports.init = function init() {
         debug('\'Allo \'Allo');
         debug('Running jQuery:', $().jquery);
         debug('Running Bootstrap:', Boolean($.fn.scrollspy) ? '~3.3.0' : false);
 
-    //    serviceWorker.init();
-
+        //check for all the variables in local storage and set them.
+        if(localStorage.getItem('city')){
+            $('#comune, #comune_provider').val(localStorage.getItem('city'));
+        }
 
         window.google.charts.load('current', {packages: ['gauge']});
         window.google.charts.setOnLoadCallback(drawChart);
@@ -35,7 +38,7 @@ define(function (require, exports) {
     exports.initJqueryInteraction = function initJqueryInteraction() {
         $('a[href="#verifica-copertura"]').click(function () {
             $('html, body').animate({
-                scrollTop: $('#verifica-copertura').offset().top
+                scrollTop: $('#verifica-copertura').offset().top - 150
             }, 2000);
         });
 
@@ -44,10 +47,41 @@ define(function (require, exports) {
             speedtest.startSpeedTest();
         });
 
+        $('#start_speed_test').click(function(e){
+            e.preventDefault();
+            if(!localStorage.getItem('city'))
+                $.notify({message: 'Inserisci il tuo comune'},{placement: { from: bottom },type: 'danger'  });
+            else {
+                var speedModal = $('#speed-test-modal').modal({backdrop: 'static', keyboard: false});
+                speedModal.modal('show');
+            }
+        });
+
+        $('#test-speed-coverage').click(function(e){
+           e.preventDefault();
+            $.notify({ message: 'Test'}, {type: 'danger'});
+            return false;
+        });
+
        if($('#download').length !== 0)
             utility.bandwidthCircle('download', '#5cb85c');
         if($('#upload').length !== 0)
             utility.bandwidthCircle('upload', '#d9534f');
+
+        $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="popover"]').popover();
+
+        $("#input-20c").rating({
+            clearButton: '',
+            clearElement: '',
+            captionElement: '',
+            symbol: "\uf111",
+            glyphicon: false,
+            size: 'sm',
+            ratingClass: "rating-fa", // the rating class will ensure font awesome icon rendering
+            defaultCaption: "{rating} cups",
+            starCaptions: {}
+        });
     };
 
     exports.typeahead = function typeahead() {
@@ -105,15 +139,24 @@ define(function (require, exports) {
             $('#indirizzo').prop('disabled', false);
         });
 
+        $('#comune').typeahead(null, {
+            name: 'find-city',
+            display: 'value',
+            source: findCity
+        }).on('typeahead:selected', function (e, datum) {
+            localStorage.setItem('city', datum.value);
+            $('#comune_provider').val(datum.value);
+            $('#tipo_via').prop('disabled', false);
+            $('#indirizzo').prop('disabled', false);
+        });
+
         $('#indirizzo').typeahead(null, {
             name: 'find-indirizzo',
             display: 'value',
             source: findStreet,
             templates: {
                 empty : [
-                    '<div class="empty-message">',
-                    'Nessun indirizzo trovato',
-                    '</div>'
+                    '<div class="empty-message">Nessun indirizzo trovato</div>'
                 ],
                 suggestion: function(data){return '<span>'+ data.particella_ext+' '+ data.toponomastica+'</span>'},
                 header: ''
@@ -133,6 +176,10 @@ define(function (require, exports) {
         }).on('typeahead:selected', function (e, datum) {
             localStorage.setItem('civic', datum);
         });
+
+    };
+
+    exports.validator = function validator(){
 
     };
 

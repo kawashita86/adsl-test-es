@@ -86,6 +86,12 @@ class SpeedTest implements SpeedTestInterface
     private $city;
 
     /**
+     * @var string
+     * @ORM\Column(name="taken_test_id", type="string", length=20, nullable=true)
+     */
+    private $takenTestId;
+
+    /**
      * Get id
      *
      * @return int
@@ -309,6 +315,30 @@ class SpeedTest implements SpeedTestInterface
     public function getCity()
     {
         return $this->city;
+    }
+
+    /**
+     * Set takenTestId
+     *
+     * @param string $takenTestId
+     *
+     * @return SpeedTest
+     */
+    public function setTakenTestId($takenTestId)
+    {
+        $this->takenTestId = $takenTestId;
+
+        return $this;
+    }
+
+    /**
+     * Get takenTestId
+     *
+     * @return string
+     */
+    public function getTakenTestId()
+    {
+        return $this->takenTestId;
     }
 
 

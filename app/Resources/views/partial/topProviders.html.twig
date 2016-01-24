@@ -1,6 +1,13 @@
-<h3>Pole position mensile</h3>
-<ul>
-{% for row in top_providers %}
-<li>{{ row.provider }}</li>
-{% endfor %}
-</ul>
+<h3 class="orange">Pole position mensile</h3>
+<br/>
+<br/>
+<div class="row" id="top-providers">
+    {% for row in top_providers %}
+        <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4 text-center" id="pole-{{ loop.index }}">
+            <a href="{{ path('adsl_compare') }}">
+                <img src="{{ asset('img/brands/'~row.provider|lower~'.png') }}" class="img-responsive" /><br/>
+                <img src="{{ asset('img/gamification.png') }}" class="price-image img-responsive"/>
+            </a>
+        </div>
+    {% endfor %}
+</div>
