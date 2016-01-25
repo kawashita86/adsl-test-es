@@ -52,7 +52,6 @@ class DefaultController extends Controller
     {
         $webservice = new ComparaWebService($this->get('csa_guzzle.client.comparasemplice'));
         $offers = $webservice->getComparator();
-        //$offers = $webservice->mockComparator(); //mock
         return $this->render('controller/default/adslCompare.html.twig', [
            'offers' => $offers
         ]);

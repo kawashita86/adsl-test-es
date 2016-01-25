@@ -34,7 +34,7 @@
         <!-- Meta data -->
         {% block meta %} <meta name="keywords"
                                content="internet, velocità connessione, adsl, speedtest, speed test, ADSL, broadband, velocità, download, upload, misura, latenza, ngi, connessione, ping, test velocità, velocità banda larga, velocità bandalarga, banda ultralarga, banda ultra-larga">
-            <meta name="description" content="Adsl-test.it Speed Test, misura la velocità della tua connessione ADSL">{%  endblock %}
+            <meta name="description" content="Adsl-test.it Speed Test, misura la velocità della tua connessione ADSL e trova le migliori offerte">{%  endblock %}
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         {% block stylesheets %}
@@ -51,12 +51,13 @@
         {% block body %}{% endblock %}
         {% include 'footer.html.twig' %}
         {% block javascripts %}
+            <script type="text/javascript"> window.baseUrl = "{{ app.request.getSchemeAndHttpHost() }}"</script>
             <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
             {% if app.environment == 'node' %}
             <script type="text/javascript" src="/scripts/config.js"></script>
             <script type="text/javascript" data-main="main" src="/bower_components/requirejs/require.js"></script>
             {% else %}
-            <script type="text/javascript" src="{{ asset('/scripts/main.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('scripts/main.js') }}"></script>
             {% endif %}
         {% endblock %}
         <script>

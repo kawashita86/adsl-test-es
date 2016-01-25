@@ -5,8 +5,8 @@
     {% for row in top_providers %}
         <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4 text-center" id="pole-{{ loop.index }}">
             <a href="{{ path('adsl_compare') }}">
-                <img src="{{ asset('img/brands/'~row.provider|lower~'.png') }}" class="img-responsive" /><br/>
-                <img src="{{ asset('img/gamification.png') }}" class="price-image img-responsive"/>
+                <img data-original="{{ asset('img/brands/'~row.provider|lower~'.png') }}" class="lazy img-responsive" /><br/>
+                <img data-original="{{ asset('img/pole-'~loop.index~'.png') }}" class="lazy price-image img-responsive"/>
             </a>
         </div>
     {% endfor %}

@@ -51,6 +51,27 @@ class Provider
 
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_provider", type="integer", nullable=true)
+     */
+    private $idProvider;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="api", type="string", length=20, nullable=true)
+     */
+    private $api;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="offers_link", type="string", length=255, nullable=true)
+     */
+    private $offersLink;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -151,4 +172,75 @@ class Provider
     {
         return $this->active;
     }
+
+    /**
+     * Set idProvider
+     *
+     * @param string $idProvider
+     * @return Provider
+     */
+    public function setIdProvider($idProvider)
+    {
+        $this->idProvider = $idProvider;
+
+        return $this;
+    }
+
+    /**
+     * Get idProvider
+     *
+     * @return string
+     */
+    public function getIdProvider()
+    {
+        return $this->idProvider;
+    }
+
+    /**
+     * Set api
+     *
+     * @param string $api
+     * @return Provider
+     */
+    public function setApi($api)
+    {
+        $this->api = $api;
+
+        return $this;
+    }
+
+    /**
+     * Get api
+     *
+     * @return string
+     */
+    public function getApi()
+    {
+        return $this->api;
+    }
+
+    /**
+     * Set offersLink
+     *
+     * @param string $offersLink
+     * @return Provider
+     */
+    public function setOffersLink($offersLink)
+    {
+        $this->offersLink = $offersLink;
+
+        return $this;
+    }
+
+    /**
+     * Get offersLink
+     *
+     * @return string
+     */
+    public function getOffersLink()
+    {
+        return $this->offersLink;
+    }
+
+
 }

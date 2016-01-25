@@ -1,5 +1,5 @@
 .btn-big {
-  background-color: #58ce21;
+  background-color: $bright-green;
   border-radius: 4px;
   color: $white;
   display: inline-block;
@@ -10,9 +10,23 @@
   vertical-align: baseline;
 }
 
+.btn-orange {
+  background-color: $orange !important;
+  padding: 15px;
+  width: 100%;
+  border: 0;
+  margin-top: 5px;
+  margin-left: 0;
+}
+
 .section-padding {
   padding-bottom: 40px;
   padding-top: 40px;
+
+  &.speed-test-sample {
+    padding-top: 0;
+    padding-bottom:20px;
+  }
 }
 
 .section-basic {
@@ -21,14 +35,14 @@
 
 .section-alternative {
   background-color: #f5f7fa;
-  padding-bottom: 30px;
-  padding-top: 30px;
+  padding-bottom: 20px;
+  padding-top: 10px;
   border-top: 1px solid #d9d9d9;
-  border-bottom: 1px solid#d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
 
   &.section-header {
     padding-top: 0;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
     border-top: 0;
   }
 }
@@ -37,10 +51,9 @@
 }
 
 #comune_provider,
-#start_speed_test{
-  width:48%;
+#start_speed_test {
+  width: 48%;
 }
-
 
 #comune_provider.big-input {
   border: 1px solid #e6e6e6;
@@ -56,7 +69,7 @@
 }
 
 .small-title {
-  color: #ff950d;
+  color: $orange;
   font-size: 18px;
   font-weight: 700;
   line-height: 30px;
@@ -66,21 +79,32 @@
 #verifica-copertura {
   input,
   select {
+    margin-bottom: 8px;
+
+    &.form-control[disabled] {
+      background-color: #eeeeee !important;
+    }
+
+    &.form-control.tt-hint {
+      background-color: transparent !important;
+    }
   }
 }
 
 #sample-test-img {
-  display:inline;
+  display: inline;
 }
 
-#data-wrapper {
+#data-wrapper,
+#data-wrapper-coverage{
   .label {
     display: inline-block;
     font-weight: bold;
     color: #151515;
   }
 
-  #ping {
+  #ping,
+  #ping-coverage{
     background-color: transparent;
     border: medium none;
     clear: both;
@@ -116,12 +140,14 @@
     }
   }
 
-  #status {
+  #status,
+  #status-coverage{
     float: left;
     width: 55%;
   }
 
-  #speedo-provider img {
+  #speedo-provider img,
+  #speedo-provider-coverage img{
     height: 25px;
   }
 
@@ -153,7 +179,8 @@
     font-weight: bold;
   }
 
-  #ip {
+  #ip,
+  #ip-coverage{
     float: right;
     width: 43%;
     .data {
@@ -164,10 +191,12 @@
 
   }
 
-  #results-area {
+  #results-area,
+  #results-area-coverage{
     margin: 0 0 4%;
   }
-  #provider {
+  #provider,
+  #provider-coverage{
     clear: both;
   }
 
@@ -196,7 +225,8 @@
     height: 100%;
     width: 100%;
   }
-  #download {
+  #download,
+  #download-coverage{
     float: left;
     width: 45%;
     &::before {
@@ -221,7 +251,8 @@
     }
   }
 
-  #upload {
+  #upload,
+  #upload-coverage{
     float: right;
     width: 45%;
     &::before {
@@ -231,41 +262,71 @@
 
 }
 
-.rating-container {
-  color: $red;
-  .rating-stars {
-    color: $green;
+.star-rating {
+  .rating-container {
+    color: $red;
+    .rating-stars {
+      color: $green;
+    }
   }
+  .caption {
+    display: none;
+  }
+}
+
+@media #{$desktop} {
+   #verifica-copertura .form-control {
+     height: 40px;
+   }
 }
 
 @media #{$mobile}, #{$small_mobile} {
 
+
+  .section-alternative {
+    background-color: #f5f7fa;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #d9d9d9;
+    border-bottom: 1px solid #d9d9d9;
+
+    &.section-header {
+      padding-top: 0;
+      padding-bottom: 10px;
+      border-top: 0;
+    }
+  }
+
   #verifica-copertura {
     input,
     select {
-      margin-bottom:8px;
+      margin-bottom: 8px;
 
       &.form-control[disabled] {
-        background-color: #eeeeee!important;
+        background-color: #eeeeee !important;
       }
 
       &.form-control.tt-hint {
-        background-color:transparent!important;
+        background-color: transparent !important;
       }
     }
 
     .btn-big {
       width: 100%;
-      margin-left:0;
+      margin-left: 0;
       padding: 15px;
+    }
+
+    #test-speed-coverage {
+      margin-bottom:8px;
     }
   }
   .section-padding {
-    padding-bottom: 20px;
-    padding-top: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
   }
 
-  .big-input {
+  #comune_provider.big-input {
     padding: 15px;
     width: 45%;
   }
@@ -280,8 +341,10 @@
       margin-left: 0;
     }
   }
-  #data-wrapper {
-    #download, #upload, #ping {
+  #data-wrapper,
+  #data-wrapper-coverage{
+    #download, #upload, #ping,
+    #download-coverage, #upload-coverage, #ping-coverage{
       position: relative;
       width: 32%;
       height: 115px;
@@ -294,7 +357,8 @@
       -ms-border-radius: 4px;
       border-radius: 4px;
     }
-    #download:before, #upload:before, #ping:before {
+    #download:before, #upload:before, #ping:before,
+    #download-coverage:before, #upload-coverage:before, #ping-coverage:before{
       content: '';
       display: block;
       position: absolute;
@@ -307,67 +371,81 @@
       z-index: 10;
       background: rgba(0, 0, 0, 0) url("../img/mobile-data-icons-sprite.png") no-repeat scroll 0 0
     }
-    #download svg, #upload svg, #ping svg {
+    #download svg, #upload svg, #ping svg,
+    #download-coverage svg, #upload-coverage svg, #ping-coverage svg{
       display: none
     }
-    #download .results, #upload .results, #ping .results {
+    #download .results, #upload .results, #ping .results,
+    #download-coverage .results, #upload-coverage .results, #ping-coverage .results{
       position: relative;
       top: 0;
       text-align: center
     }
-    #download .label, #upload .label, #ping .label {
+    #download .label, #upload .label, #ping .label,
+    #download-coverage .label, #upload-coverage .label, #ping-coverage .label{
       margin: 0;
       padding: 0;
       font-size: 10px;
-      font-size: 1rem;
       font-weight: normal;
       background: none;
     }
-    #download .data, #upload .data, #ping .data {
+    #download .data, #upload .data, #ping .data,
+    #download-coverage .data, #upload-coverage .data, #ping-coverage.data{
       font-size: 22px;
-      font-size: 2.2rem;
       font-weight: bolder;
       line-height: 1
     }
-    #download:before {
+    #download:before,
+    #download-coverage:before{
       background-position: 0 0
     }
-    #download .data {
-      color: #5cb85c
+    #download .data,
+    #download-coverage .data{
+      color: $green;
     }
-    #upload:before {
+    #upload:before,
+    #upload-coverage:before {
       background-position: 0 -26px
     }
-    #upload .data {
-      color: #d9534f
+    #upload .data,
+    #upload-coverage .data{
+      color: $red;
     }
-    #ping {
+    #ping,
+    #ping-coverage{
       margin: 0 2% 0 0;
     }
-    #upload {
+    #upload,
+    #upload-coverage{
       margin: 0;
     }
-    #ping:before {
+    #ping:before,
+    #ping-coverage:before{
       background-position: 0 -52px
     }
-    #ping b.label {
+    #ping b.label,
+    #ping-coverage b.label{
       display: none
     }
-    #ping span.label {
+    #ping span.label,
+    #ping-coverage span.label{
       display: inline-block
     }
-    #ping .data {
+    #ping .data,
+    #ping-coverage .data{
       display: block;
       color: #e13e01
     }
-    #ping .metrics {
+    #ping .metrics,
+    #ping-coverage .metrics{
       margin: 0 5px 0 0;
       font-size: 10px;
       font-size: 1rem;
       font-weight: normal
     }
 
-    #ip .data {
+    #ip .data,
+    #ip-coverage .data{
       padding: 0 0 0 10px;
     }
   }

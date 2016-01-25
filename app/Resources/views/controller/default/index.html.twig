@@ -33,11 +33,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="main-title mobile-title"><span class="orange">Adsl Test</span> è l'unico sito in italia
+                    <h2 class="main-title mobile-title" style="font-size:24px;"><span class="orange">Adsl Test</span> è l'unico sito in italia
                         che ti permette di verificare la tua attuale velocità e di sapere
                         la velocità stimata per il tuo civico degli altri operatori consigliandoti
-                        la migliore tecnologia nella tua zona.</h1>
-                    <h3 class="mobile-subtitle midsmall"> Prima di effettuare il test ti consigliamo di
+                        la migliore tecnologia nella tua zona.</h2>
+                    <h3 class="mobile-subtitle midsmall hidden-sm hidden-xs"> Prima di effettuare il test ti consigliamo di
                         interrompere
                         qualunque attività di download o upload dati(torrent, emule, file-sharing etc).<br/>
                         Una volta terminato il test adsl otterrai Velocità ADSL (download, upload) e ping.
@@ -74,7 +74,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="text-center">Alla fine della verifica della velocità ADSL (speed test) otterai un grafico
+                    <h3 class="text-center mobile-title" id="speed-result-title">Alla fine della verifica della velocità ADSL (speed test) otterai un grafico
                         come questo:</h3>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12" id="data-wrapper">
@@ -91,13 +91,13 @@
                         <span id="speedo-provider" class="data"> - </span>
                     </div>
                     <div id="results-area" class="clear">
-                        <div id="download" class="bandwidth-circle">
+                        <div id="download" class="bandwidth-circle text-center">
                             <div class="results">
                                 <em id="speedo-down" class="data">--.--</em><br/>
                                 <div class="label">Mbps Download</div>
                             </div>
                         </div>
-                        <div id="upload" class="bandwidth-circle">
+                        <div id="upload" class="bandwidth-circle text-center">
                             <div class="results">
                                 <em id="speedo-up" class="data">--.--</em><br/>
                                 <div class="label">Mbps Upload</div>
@@ -113,7 +113,7 @@
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 text-center">
                     <br/>
-                    <img id="sample-test-img" class="img-responsive" src="{{ asset('img/speed-test-example.png') }}"/>
+                    <img id="sample-test-img" class="img-responsive lazy" data-original="{{ asset('img/speed-test-example.png') }}"/>
                 </div>
             </div>
         </div>
@@ -149,11 +149,12 @@
                     <form class="form-horizontal" role="form" id="verifica-copertura" data-toggle="validator">
                         <div class="form-group">
                             <div class="col-md-3 col-sm-12 col-xs-12">
-                                <input type="text" class="form-control" id="comune" placeholder="Il tuo comune"
+                                <input type="text" class="form-control" id="comune" name="comune"
+                                       placeholder="Il tuo comune"
                                        required>
                             </div>
                             <div class="col-md-2 col-sm-12 col-xs-12">
-                                <select class="form-control" id="tipo_via" disabled required>
+                                <select class="form-control" id="tipo_via" name="tipo_via" disabled required>
                                     <option value="VIA">Via</option>
                                     <option value="CORSO">Corso</option>
                                     <option value="PIAZZA">Piazza</option>
@@ -163,22 +164,29 @@
                                 </select>
                             </div>
                             <div class="col-md-3 col-sm-9 col-xs-9">
-                                <input type="text" class="form-control" id="indirizzo" placeholder="Il tuo indirizzo" disabled >
+                                <input type="text" class="form-control" id="indirizzo" name="indirizzo"
+                                       placeholder="Il tuo indirizzo" disabled required>
                             </div>
                             <div class="col-md-1 col-sm-3 col-xs-3">
-                                <input type="text" class="form-control" id="civico" placeholder="Civico" disabled>
+                                <input type="text" class="form-control" id="civico" name="civico" placeholder="Civico"
+                                       disabled required>
                             </div>
                             <div class="col-md-3 col-sm-12 col-xs-12">
-                                <input type="email" class="form-control" id="email" placeholder="La tua email" required>
+                                <input type="email" class="form-control" id="email" name="email"
+                                       placeholder="La tua email" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-md-12 col-xs-12" style="margin-bottom: 1em" >
-                                    <input type="checkbox" style="visibility: visible;" value="si" name="privacy" id="all-flags">
-                                    <small style="font-size:11px" class="text-justify">
-                                        Accetto l'informativa privacy di Comparasemplice e tutte le clausole in essa indicate. Non tutti i consensi sono obbligatori.
-                                        Se vuoi selezionare i consensi parzialmente. <a style="cursor:pointer" id="open-support-flags">clicca qui</a>
-                                    </small>
+                            <div class="col-md-12 col-xs-12" style="margin-bottom: 1em">
+                                <input type="checkbox" style="visibility: visible;" value="si" name="privacy"
+                                       id="all-flags" required>
+                                <small style="font-size:11px" class="text-justify">
+                                    Accetto l'informativa privacy di Comparasemplice e tutte le clausole in essa
+                                    indicate. Non tutti i consensi sono obbligatori.
+                                    Se vuoi selezionare i consensi parzialmente. <a style="cursor:pointer"
+                                                                                    id="open-support-flags">clicca
+                                        qui</a>
+                                </small>
                             </div>
                         </div>
                         <div class="form-group">
@@ -189,11 +197,12 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-2 col-xs-4 col-lg-4 col-sm-4">
-                                <input type="text" class="form-control" id="prefisso" pattern="(\d{3})"
+                                <input type="text" class="form-control" name="prefisso" id="prefisso"
                                        placeholder="Prefisso">
                             </div>
                             <div class="col-md-4 col-lg-4 col-xs-8 col-sm-8">
-                                <input type="tel" class="form-control" id="telefono" placeholder="Numero di telefono">
+                                <input type="text" class="form-control" name="telefono" id="telefono"
+                                       placeholder="Numero di telefono">
                             </div>
                         </div>
                         <div class="form-group">
@@ -204,53 +213,82 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-4 col-lg-4 col-xs-12 col-sm-12">
-                                <input type="tel" class="form-control" id="cellulare" placeholder="Numero cellulare">
+                                <input type="text" class="form-control" id="cellulare" name="cellulare"
+                                       placeholder="Numero cellulare">
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6">
-                               <button class="btn btn-big" type="submit" id="test-speed-coverage">Testa Velocit&agrave;</button>
+                            <div class="col-md-6 col-lg-6 col-xs-12 col-sm-6 text-center">
+                                <button class="btn btn-big" type="submit" id="test-speed-coverage">Testa
+                                    Velocit&agrave;</button>
                             </div>
-                            <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6">
-                                <button type="submit" id="get-coverage" data-toggle="popover" data-placement="right" disabled="disabled"
+                            <div class="col-md-6 col-lg-6 col-xs-12 col-sm-6  text-center">
+                                <button type="submit" id="get-coverage" data-toggle="popover" data-placement="right"
                                         class="btn btn-big" data-trigger="hover"
-                                        data-content="Se non ti interessa lo speed test, vai subito alla verifica copertura">Solo verifica copertura</button>
+                                        data-content="Se non ti interessa lo speed test, vai subito alla verifica copertura">
+                                    Solo verifica copertura
+                                </button>
                             </div>
                         </div>
                     </form>
                 </div>
-                <div class="col-md-12 col-lg-12 col-xs-12 col-sm-6">
-                    <p>Rispetto a tutti gli altri test di velocit&agrave; ADSL alla fine della verifica otterrai un
-                        grafico come questo:</p>
+            </div>
+        </div>
+    </div>
+    <div class="section-padding">
+        <div class="container" id="coverage-results-container">
+            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 text-center">
+                <h3 class="text-center mobile-title" id="cover-result-title">Rispetto a tutti gli altri test di velocit&agrave; ADSL alla fine della verifica otterrai un
+                    grafico come questo:</h3>
+            </div>
+            <div id="dynamic-container">
+            <div class="col-md-6 col-lg-6 col-xs-12 col-sm-6 text-center" id="distanza-centrale-wrapper">
+                <h4 class="orange">Distanza dalla centrale pi&ugrave; vicina</h4>
+                <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                    <i class="fa fa-cloud fa-4x"></i>
                 </div>
-                <div class="col-md-6 col-lg-6 col-xs-12 col-sm-6">
-                    <h4 class="orange">Distanza dalla centrale pi&ugrave; vicina</h4>
-                    <div class="col-md-2 col-lg-2 col-sm-3 col-xs-3">
-                        <i class="fa fa-cloud fa-4x"></i>
-                    </div>
-                    <div class="col-md-5 col-lg-5 col-sm-5 col-xs-5">
-                        <br/>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100"
-                                 aria-valuemin="0" aria-valuemax="100" style="width:100%">
-                                233ms
-                            </div>
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                    <br/>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100"
+                             aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                            233ms
                         </div>
                     </div>
-                    <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
-                        <i class="fa fa-home fa-4x"></i>
-                    </div>
                 </div>
-                <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
-                    <h4 class="orange">
-                        Risorse in centrale
-                    </h4>
-                    <input id="input-20c"  disabled value="3.5">
-                </div>
-                <div class="col-md-12">
-
+                <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                    <i class="fa fa-home fa-4x"></i>
                 </div>
             </div>
+            <div class="col-md-6 col-lg-6 col-xs-12 col-sm-6  text-center">
+                <h4 class="orange">
+                    Risorse in centrale
+                </h4>
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 ">
+                    <input id="input-20c" disabled value="3.5">
+                </div>
+            </div>
+            </div>
+            <div class="col-md-12" id="coverage-offers">
+
+            </div>
+        </div>
+    </div>
+    <div class="section-alternative">
+        <div class="container">
+            {{ include('partial/avgChart.html.twig') }}
+            <div class="col-md-12">
+                Lo speed test di ADSL.it si basa sulla tecnologia simile a quella di OOKLA leader internazionale nella
+                misurazione della velocità delle ADSL. Gli speed test di OOKLA vengono usati da siti leader delle
+                telecomunicazioni e usati su siti come SpeedTest.net. Se vuoi testare anche la velocità di download del
+                tuo
+                smartphone puoi scaricare un’applicazione (sia per OS android che per IOS) e misurare la velocità adsl
+                mobile. Per chi volesse approfondire altre tematiche relative alla Adsl e caratteristiche fisiche che
+                incidono sulla sua velocità consigliamo leggere la voce il nostro approfondimento cosa influenza la
+                velocità
+                ADSL e la voce ADSL di Wikipedia , utili anche per scegliere la migliore tariffa ADSL in offerta
+            </div>
+
         </div>
     </div>
     <div class="modal fade" id="speed-test-modal" tabindex="-1" role="dialog" aria-labelledby="SpeedTest">

@@ -83,11 +83,17 @@
     &:last-child .form-control {
       border-radius: 0 4px 4px 0;
     }
+
+    .tt-hint {
+      color: transparent!important;
+    }
   }
 }
+.section-basic span.twitter-typeahead,
 span.twitter-typeahead {
   width: 100%;
   display: inline!important;
+  position:inherit!important;
   .tt-menu {
     @extend %extend_1;
   }

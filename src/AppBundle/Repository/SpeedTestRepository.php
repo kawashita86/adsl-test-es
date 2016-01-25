@@ -48,4 +48,19 @@ class SpeedTestRepository extends \Doctrine\ORM\EntityRepository
 
         return $q->getResult();
     }
+
+    public function getAvgHourly($fromDate, $endDate){
+        $q = $this
+            ->createQUeryBuilder('e')
+            ->select('AVG(e.downloadSpeed) as download, AVG(e.uploadSpeed) as upload, e.timestamp as hourly')
+            ->where('e.timestamp BETWEEN :fromDate AND :endDate')
+            ->setParameter('fromDate', $fromDate)
+            ->setParameter('endDate', $endDate)
+            ->groupBy('hourly')
+            ->orderBy('e.timestamp')
+            ->getQuery();
+
+        return $q->getResult();
+
+    }
 }

@@ -6,7 +6,6 @@ var require = {
         app: '../app/Resources/public/scripts/app',
         modules: '../app/Resources/public/scripts/modules',
         jquery: 'jquery/dist/jquery',
-        'visionmedia-debug': 'visionmedia-debug/dist/debug',
         bootstrap: 'bootstrap-sass-official/assets/javascripts/bootstrap',
         'bootstrap/affix': 'bootstrap-sass-official/assets/javascripts/bootstrap/affix',
         'bootstrap/alert': 'bootstrap-sass-official/assets/javascripts/bootstrap/alert',
@@ -20,14 +19,19 @@ var require = {
         'bootstrap/tab': 'bootstrap-sass-official/assets/javascripts/bootstrap/tab',
         'bootstrap/tooltip': 'bootstrap-sass-official/assets/javascripts/bootstrap/tooltip',
         'bootstrap/transition': 'bootstrap-sass-official/assets/javascripts/bootstrap/transition',
-        'appcache-nanny': 'appcache-nanny/appcache-nanny',
         picturefill: 'picturefill/dist/picturefill',
         raphael: 'raphael/raphael',
-        typeahead: 'typeahead.js/dist/typeahead.bundle',
+        typeahead: 'typeahead.js/dist/typeahead.jquery',
         bloodhound: 'typeahead.js/dist/bloodhound',
         'bootstrap-validator': 'bootstrap-validator/dist/validator.min',
         'remarkable-bootstrap-notify': 'remarkable-bootstrap-notify/bootstrap-notify',
-        'bootstrap-star-rating': 'bootstrap-star-rating/js/star-rating.min'
+        'bootstrap-star-rating': 'bootstrap-star-rating/js/star-rating.min',
+        'jquery-validation': 'jquery-validation/dist/jquery.validate',
+        morris: 'morris.js/morris',
+        'appcache-nanny': 'appcache-nanny/appcache-nanny',
+        'visionmedia-debug': 'visionmedia-debug/dist/debug',
+        'jquery.lazyload': 'jquery.lazyload/jquery.lazyload',
+        'jquery.scrollstop': 'jquery.lazyload/jquery.scrollstop'
     },
     shim: {
         bootstrap: {
@@ -111,10 +115,7 @@ var require = {
         typeahead: {
             deps: [
                 'jquery'
-            ],
-            init: function ($) {
-return require.s.contexts._.registry['typeahead.js'].factory( $ );
-}
+            ]
         }
     },
     packages: [

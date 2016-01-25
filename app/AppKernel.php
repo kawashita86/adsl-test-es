@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new Zoerb\Bundle\FilerevBundle\ZoerbFilerevBundle(),
             new Csa\Bundle\GuzzleBundle\CsaGuzzleBundle(),
+        //    new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle()
 
         );
 

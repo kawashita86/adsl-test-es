@@ -22,15 +22,15 @@ class AjaxController extends Controller
      */
     public function saveResultAction(Request $request)
     {
-            try {
-                $speedTest = $this->container->get('app.speed_test.handler')->post(
-                    $request->request->all()
-                );
+        try {
+            $speedTest = $this->container->get('app.speed_test.handler')->post(
+                $request->request->all()
+            );
 
-                return new JsonResponse(['id' => $speedTest->getId()]);
-            } catch (InvalidFormException $e) {
-                return new JsonResponse(['error' => $e->getMessage()], '403');
-            }
+            return new JsonResponse(['id' => $speedTest->getId()]);
+        } catch (InvalidFormException $e) {
+            return new JsonResponse(['error' => $e->getMessage()], '403');
+        }
     }
 
     /**
@@ -48,6 +48,29 @@ class AjaxController extends Controller
             'adsl_speedtest' => $speedtest,
             'tariffs' => []
         ]);
+    }
+
+    /**
+     * @param Request $request
+     * @Route("/get-coverage-offers", name="get_coverage_offers")
+     * @Method("POST")
+     */
+    public function getCoverageOffersAction(Request $request)
+    {
+
+        //check request for additional data
+        $webservice = new ComparaWebService($this->get('csa_guzzle.client.copertura'));
+        $offers = $webservice->findVerify($request->get('city'), $request->get('particella'), $request->get('street'), $request->get('civic'));
+
+        return new JsonResponse(array(
+            'error' => false,
+            'template' => $this->renderView('controller/ajax/coverageOffers.html.twig', [
+                'offers' => $offers['providers']
+            ]),
+            'lineQuality' => $offers['lineQuality'],
+            'distance' => $offers['distance'],
+            'offers' => $offers
+        ));
     }
 
     /**
@@ -80,12 +103,12 @@ class AjaxController extends Controller
         $webservice = new ComparaWebService($this->get('csa_guzzle.client.copertura'));
         $streets = $webservice->findStreets($request->get('city'), $request->get('street'));
         $typeahead = array();
-        foreach($streets['result'] as $street) {
+        foreach ($streets['result'] as $street) {
             $street['name'] = $street['toponomastica'];
             $street['value'] = $street['toponomastica'];
             $street['tokens'] = [$street['toponomastica']];
             $typeahead[] = $street;
-         }
+        }
         return new JsonResponse($typeahead);
     }
 
@@ -98,7 +121,7 @@ class AjaxController extends Controller
     public function findCivicAction(Request $request)
     {
         $webservice = new ComparaWebService($this->get('csa_guzzle.client.copertura'));
-        $civics = $webservice->findCivics($request->get('city'), $request->get('street'),$request->get('civic'), $request->get('particella'));
+        $civics = $webservice->findCivics($request->get('city'), $request->get('street'), $request->get('civic'), $request->get('particella'));
         $typeahead = array();
         //transform results before returing it
         foreach ($civics['result'] as $civic) {
@@ -106,6 +129,24 @@ class AjaxController extends Controller
         }
         return new JsonResponse($typeahead);
 
+    }
+
+    /**
+     * @return JsonResponse
+     * @Route("get-avg-hourly", name="get_avg_hourly")
+     * @Method("GET")
+     */
+    public function getAvgHourlyAction()
+    {
+        //$chartData = $this->container->get('app.speed_test.handler')->getAvgHourly();
+        $chartData = $this->getAvgHourlyMockup();
+        return new JsonResponse($chartData);
+
+    }
+
+    private function getAvgHourlyMockup()
+    {
+        return json_decode('[{"download":19.09,"upload":1.95,"dtf":"00:00"},{"download":8.9,"upload":0.67,"dtf":"01:00"},{"download":8.31,"upload":0.68,"dtf":"02:00"},{"download":10.33,"upload":0.88,"dtf":"04:00"},{"download":9.43,"upload":0.83,"dtf":"06:00"},{"download":10.58,"upload":1.65,"dtf":"07:00"},{"download":18.16,"upload":1.52,"dtf":"08:00"},{"download":14.81,"upload":2.37,"dtf":"09:00"},{"download":12.52,"upload":2.11,"dtf":"10:00"},{"download":12.76,"upload":1.86,"dtf":"11:00"},{"download":16.8,"upload":2.36,"dtf":"12:00"},{"download":12.27,"upload":1.8,"dtf":"13:00"},{"download":15.04,"upload":2.51,"dtf":"14:00"},{"download":18.04,"upload":4.07,"dtf":"15:00"}]', true);
     }
 
 }

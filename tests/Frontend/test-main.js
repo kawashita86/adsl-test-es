@@ -41,8 +41,12 @@ require.config({
         typeahead: 'typeahead.js/dist/typeahead.bundle',
         bloodhound: 'typeahead.js/dist/bloodhound',
         'bootstrap-validator': 'bootstrap-validator/dist/validator.min',
+        'bootstrap-star-rating': 'bootstrap-star-rating/js/star-rating.min',
         'remarkable-bootstrap-notify': 'remarkable-bootstrap-notify/bootstrap-notify',
-        'bootstrap-star-rating': 'bootstrap-star-rating/js/star-rating.min'
+        'jquery-validation': 'jquery-validation/dist/jquery.validate',
+        morris: 'morris.js/morris',
+        'jquery.lazyload': 'jquery.lazyload/jquery.lazyload',
+        'jquery.scrollstop': 'jquery.lazyload/jquery.scrollstop'
     },
     shim: {
         bootstrap: {
@@ -126,10 +130,7 @@ require.config({
         typeahead: {
             deps: [
                 'jquery'
-            ],
-            init: function ($) {
-    return require.s.contexts._.registry['typeahead.js'].factory( $ );
-}
+            ]
         }
     },
     packages: [

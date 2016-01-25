@@ -2,13 +2,14 @@
 @import "components-font-awesome/css/font-awesome";
 @import "bootstrap-star-rating/css/star-rating";
 @import "variables";
+@import "typeahead-add";
+@import "widgets";
 @import "header";
 @import "home";
 @import "footer";
 @import "modal";
 @import "offers";
-@import "typeahead";
-@import "widgets";
+
 
 .line-compacted {
   line-height: 36px !important;
@@ -75,6 +76,15 @@
   color: $red !important;
 }
 
+.main-title {
+  font-size: 24px;
+}
+
+.form-control:focus {
+  border-color:#ff950d;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(255, 149, 13, 0.6);
+}
+
 @media #{$mobile}, #{$small_mobile}, #{$small_tablet}, #{$tablet}, #{$small_desktop}{
   .mobile-title {
     font-size: 21px;
@@ -92,3 +102,9 @@
     margin-bottom: 10px;
   }
 }
+
+@media #{$small_mobile} {
+  .mobile-title {
+    font-size:18px;
+  }
+  }

@@ -33,7 +33,7 @@ module.exports = function (grunt, options) {
             'sass',
             'autoprefixer',
             'fetch',
-            'uncss',
+         //   'uncss',
             'cssmin',
             'critical'
         ],
@@ -59,7 +59,7 @@ module.exports = function (grunt, options) {
             'appcache'
         ],
         assets: [
-            'test',
+          //  'test',
             'js',
             'css',
             'img',

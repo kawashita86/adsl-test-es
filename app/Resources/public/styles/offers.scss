@@ -1,4 +1,5 @@
-div#results-box {
+div#results-box,
+div#coverage-offers {
 
   div.bottom-label {
     bottom: 0;
@@ -148,39 +149,86 @@ div#results-box {
 
       }
 
-      div.box-action {
-        padding: 10px 5px;
-        text-align: center;
-
-        a {
-          text-decoration: none;
-
-          button.active-now {
-            width: 100%;
-            font-size: 18px;
-            font-weight: 600;
-            margin: 0;
-            border: 0!important;
-            padding: 20px 30px;
-            margin-top:35px;
-          }
-        }
-
-        span {
-          font-weight: 300;
-          font-size: 12px;
-          color: #565656;
-        }
-      }
-
     }
 
   }
 }
 
+div#results-box {
+  div.box-action {
+    padding: 10px 5px;
+    text-align: center;
+
+    a {
+      text-decoration: none;
+
+      button.active-now {
+        width: 100%;
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0;
+        border: 0!important;
+        padding: 20px 30px;
+        margin-top:35px;
+      }
+    }
+
+    span {
+      font-weight: 300;
+      font-size: 12px;
+      color: #565656;
+    }
+  }
+}
+
+div#coverage-offers {
+
+  div.offer-box {
+    padding: 0;
+
+    div.offer-logo {
+      height:auto;
+      img {
+        margin-top:50px;
+      }
+    }
+    div.offer-box-wrap {
+      border-top: 0;
+      div.price.tlc-box {
+        height: 147px;
+      }
+    }
+  }
+
+  div.box-action {
+    padding: 10px 5px;
+    text-align: center;
+
+    a {
+      text-decoration: none;
+
+      button.active-now {
+        width: 100%;
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0;
+        border: 0!important;
+        padding: 15px 30px;
+      }
+    }
+
+    span {
+      font-weight: 300;
+      font-size: 12px;
+      color: #565656;
+    }
+  }
+}
+
 @media #{$small_mobile}{
 
-  #results-box{
+  #results-box,
+  #coverage-offers{
     padding:0 5px;
 
     .promo-box{
@@ -290,6 +338,40 @@ div#results-box {
       border:1px solid silver;
       border-bottom:none;
       border-radius:5px 5px 0 0!important}
+#coverage-offers {
+  .mob-rr {
+    .mob-cta-container {
+      margin-top: 13.5px;
+
+      .top-promo {
+        margin-top: 42.5px
+      }
+
+      .cta {
+        position: absolute;
+        width: 130px;
+        right: -20px;
+        height: 33px;
+        line-height: 0;
+        box-shadow: 0 1px 1px #aeaeae;
+        border: 0 !important;
+        padding: 20px 10px;
+        top: 0;
+
+        &.alternative-cta {
+          top: 45px;
+        }
+
+        &.big-cta {
+          width: 150px;
+          height: 40px;
+          font-size: 28px;
+          right: -23px;
+        }
+      }
+    }
+  }
+}
 }
 
 @media #{$mobile} {
@@ -347,6 +429,41 @@ div#results-box {
         line-height: 0;
         box-shadow: 0 1px 1px #aeaeae;
 
+      }
+    }
+  }
+
+  #coverage-offers {
+    .mob-rr {
+      .mob-cta-container {
+        margin-top: 13.5px;
+
+        .top-promo {
+          margin-top: 42.5px
+        }
+
+        .cta {
+          position: absolute;
+          width: 130px;
+          right: -20px;
+          height: 33px;
+          line-height: 0;
+          box-shadow: 0 1px 1px #aeaeae;
+          border: 0 !important;
+          padding: 20px 10px;
+          top: 0;
+
+          &.alternative-cta {
+            top: 45px;
+          }
+
+          &.big-cta {
+            width: 150px;
+            height: 40px;
+            font-size: 28px;
+            right: -23px;
+          }
+        }
       }
     }
   }

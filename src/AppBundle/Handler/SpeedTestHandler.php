@@ -38,6 +38,13 @@ class SpeedTestHandler implements SpeedTestHandlerInterface {
         return $this->repository->findBy([], null, $limit, $offset);;
     }
 
+    public function getAvgHourly(){
+        $now = new \DateTime();
+        $startDay = $now->setTime(0,0,0);
+        $endDay = $now->setTime(23,59,59);
+        return $this->repository->getAvgHourly($startDay,$endDay);
+    }
+
     public function getTopProviders($limit = 3){
         $now = new \DateTime();
         $month = $now->sub(new \DateInterval("P1M"));
@@ -46,6 +53,7 @@ class SpeedTestHandler implements SpeedTestHandlerInterface {
 
     public function getLatest($limit = 5){
         $now = new \DateTime();
+        $now->setTime(0,0,0);
         return $this->repository->findLatestByDate($now, $limit);
     }
 

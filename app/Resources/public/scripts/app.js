@@ -10,29 +10,40 @@
 define(function (require, exports) {
     'use strict';
     var $ = require('jquery');
-  //  var serviceWorker = require('./modules/service-worker');
-    var debug = require('visionmedia-debug')('adslTestEs:main');
+    window.jQuery =  $;
     var raphael = require('raphael');
     var speedtest = require('./modules/speed-test');
     var utility = require('./modules/utility');
-    var typeahead = require('typeahead');
+    var baseUrl = window.baseUrl || "";
+    var requestCoverage = true;
+    require('typeahead');
     require('bloodhound');
     require('bootstrap');
     require('remarkable-bootstrap-notify');
     require('bootstrap-star-rating');
+    require('jquery.lazyload');
 
     exports.init = function init() {
-        debug('\'Allo \'Allo');
-        debug('Running jQuery:', $().jquery);
-        debug('Running Bootstrap:', Boolean($.fn.scrollspy) ? '~3.3.0' : false);
 
+        utility.getIspInformation();
         //check for all the variables in local storage and set them.
         if(localStorage.getItem('city')){
             $('#comune, #comune_provider').val(localStorage.getItem('city'));
+            $('#indirizzo, #tipo_via').prop('disabled', false);
+            if(localStorage.getItem('street')){
+                $('#indirizzo').val(localStorage.getItem('street'));
+                $('#civico').prop('disabled', false);
+                if(localStorage.getItem('civic')){
+                    $('#civico').val(localStorage.getItem('civic'));
+                }
+
+            }
         }
 
         window.google.charts.load('current', {packages: ['gauge']});
         window.google.charts.setOnLoadCallback(drawChart);
+
+        utility.generateChartAvgHourly();
     };
 
     exports.initJqueryInteraction = function initJqueryInteraction() {
@@ -42,26 +53,21 @@ define(function (require, exports) {
             }, 2000);
         });
 
-        $('#speed-test-modal').on('shown.bs.modal', function () {
-            console.log('start speedtest');
-            speedtest.startSpeedTest();
+        $('#speed-test-modal').on('shown.bs.modal', function (e) {
+            speedtest.startSpeedTest(requestCoverage);
         });
 
         $('#start_speed_test').click(function(e){
             e.preventDefault();
             if(!localStorage.getItem('city'))
-                $.notify({message: 'Inserisci il tuo comune'},{placement: { from: bottom },type: 'danger'  });
+                $.notify({message: 'Inserisci il tuo comune'},{placement: { from: 'bottom' },type: 'danger'  });
             else {
                 var speedModal = $('#speed-test-modal').modal({backdrop: 'static', keyboard: false});
+                requestCoverage = false;
                 speedModal.modal('show');
             }
         });
 
-        $('#test-speed-coverage').click(function(e){
-           e.preventDefault();
-            $.notify({ message: 'Test'}, {type: 'danger'});
-            return false;
-        });
 
        if($('#download').length !== 0)
             utility.bandwidthCircle('download', '#5cb85c');
@@ -84,12 +90,19 @@ define(function (require, exports) {
         });
     };
 
+    exports.initLazyLoad = function lazyLoad() {
+            $("img.lazy").lazyload({
+                threshold : 200
+            });
+
+    };
+
     exports.typeahead = function typeahead() {
         var findCity = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
             queryTokenizer: Bloodhound.tokenizers.whitespace,
             remote: {
-                url: '/ajax/find/city?city=%QUERY',
+                url: 'ajax/find/city?city=%QUERY',
                 wildcard: '%QUERY'
             }
         });
@@ -100,7 +113,7 @@ define(function (require, exports) {
             },
             queryTokenizer: Bloodhound.tokenizers.whitespace,
             remote: {
-                url: '/ajax/find/street?street=',
+                url:  'ajax/find/street?street=',
                 replace: function (url, query) {
                     url += query;
                     if(localStorage.getItem('city'))
@@ -114,7 +127,7 @@ define(function (require, exports) {
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace,
             queryTokenizer: Bloodhound.tokenizers.whitespace,
             remote: {
-                url: '/ajax/find/civic?civic=',
+                url:  'ajax/find/civic?civic=',
                 replace: function (url, query) {
                     url += query;
                     if(localStorage.getItem('city'))
@@ -174,13 +187,28 @@ define(function (require, exports) {
             display: 'value',
             source: findCivic
         }).on('typeahead:selected', function (e, datum) {
-            localStorage.setItem('civic', datum);
+            localStorage.setItem('civic', datum.value);
         });
 
     };
 
     exports.validator = function validator(){
+            utility.validateCoperturaForm();
 
+            $('#test-speed-coverage').click(function(e){
+               e.preventDefault();
+               if($('#verifica-copertura').valid()) {
+                   requestCoverage = true;
+                   var speedModal = $('#speed-test-modal').modal({backdrop: 'static', keyboard: false});
+                   speedModal.modal('show');
+               }
+            });
+
+        $('#get-coverage').click(function(e){
+            e.preventDefault();
+            if($('#verifica-copertura').valid())
+                utility.getCoverageOffers();
+        });
     };
 
     function drawChart(){

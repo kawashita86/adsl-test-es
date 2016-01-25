@@ -5,7 +5,9 @@ parameters:
     app.speed_test.handler.class: AppBundle\Handler\SpeedTestHandler
     app.speed_test.class: AppBundle\Entity\SpeedTest
     app.speed_test.type.class: AppBundle\Form\SpeedTestType
-    app.speed_test.type.name : ''
+    app.providers.handler.class: AppBundle\Handler\ProviderHandler
+    app.providers.class: AppBundle\Entity\Provider
+    app.providers.type.class: AppBundle\Form\ProviderType
 
 services:
 #    service_name:
@@ -19,6 +21,14 @@ services:
         tags:
             - {name: form.type, alias: speedtest_form }
         arguments: ['%app.speed_test.type.class%']
+    app.providers.handler:
+        class: %app.providers.handler.class%
+        arguments: ['@doctrine.orm.entity_manager', '%app.providers.class%', '@form.factory']
+    app.providers.type:
+        class: AppBundle\Form\ProviderType
+        tags:
+            - {name: form.type, alias: provider_form }
+        arguments: ['%app.providers.type.class%']
     app.twig_extension:
         class: AppBundle\Twig\BandwidthFilter
         public: false

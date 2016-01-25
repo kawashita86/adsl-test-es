@@ -60,14 +60,14 @@ class SpeedTest implements SpeedTestInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="latitude", type="string", length=40)
+     * @ORM\Column(name="latitude", type="string", length=40,nullable=true)
      */
     private $latitude;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="longitude", type="string", length=40)
+     * @ORM\Column(name="longitude", type="string", length=40,nullable=true)
      */
     private $longitude;
 

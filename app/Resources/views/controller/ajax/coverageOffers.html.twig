@@ -1,0 +1,59 @@
+<h3 class="orange">Tecnologie e velocità raggiungibili</h3>
+{% for offer in offers %}
+    {% if offer['id_provider']  is defined %}
+    <!-- MOBILE OFFER -->
+    <div class="col-xs-12 hidden-sm hidden-md hidden-lg mob-rr">
+        <div class="col-xs-5 col-xs-offset-7 col-sm-5 col-sm-offset-7 header">
+            <a data-toggle="modal" href="#provider-details-{{ loop.index }}">
+                <img src="{{ asset('img/brands/'~offer.id_provider~'.png') }}" title="{{ offer.id_provider }}" class="mob-logo">
+            </a>
+        </div>
+        <div class="col-xs-3 col-sm-3 nopadding">
+            <br/>
+            <span class="smaller">Tecnologia</span>
+            <br>
+             <span class="orange mid">{{ offer.tech }}</span>
+            <br>
+        </div>
+        <div class="col-xs-9 col-sm-9 nopadding mob-cta-container">
+             <span class="orange x-mid">Velocità</span><br/>
+            <span class="green light-bold x-big">{{ offer.speed }}</span><span class="small txt-light">Mbps</span>
+            <a href="{{ offer.name }}" target="_blank" onclick="ga('send','pageview','/click-procedi-offerta-{{ offer.name }}')" title="Procedi con {{ offer.name }}">
+                <button class="btn-big cta mid">Procedi</button>
+            </a>
+            <button link="#" class="btn-orange btn-big cta alternative-cta">Guarda</button>
+        </div>
+    </div>
+    <!-- MOBILE OFFER -->
+    <div class="col-sm-12 col-lg-12 col-md-12 hidden-xs offer-box">
+        <!-- WRAP OFFER --->
+        <div class="row offer-box-wrap">
+            <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12 offer-logo">
+                <img src="{{ asset('img/brands/'~offer.name~'.png') }}" class="lazy"
+                     alt="Offerte Infostrada: tariffe adsl e telefono e tariffe aggiornate" title="Infostrada"
+                     style="display: inline;">
+            </div>
+            <div class="col-md-2 col-lg-2 hidden-xs hidden-sm tlc-box price default-price">
+                    <span class="col-xs-12 various" style="line-height: 32px;">Tecnologia</span>
+                    <br />
+                    {{ offer.tech }}
+            </div>
+            <div class="col-md-5 col-lg-5 col-sm-12 col-xs-12 price tlc-box">
+                <span class="col-xs-12 various" style="line-height: 32px;">Velocità download stimata in funzione della distanza</span>
+                <br />
+                <span class="various">fino a</span> {{ offer.speed }} Mbps
+            </div>
+            <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12 box-action">
+                <a href="#"
+                   class="promo-link simple-link" target="_blank" onclick="ga('send','pageview','/click-procedi-offerta-{{ offer.name }}')">
+                    <button data-env="tlc" data-id="5" class="btn-big active-now">Procedi</button>
+                </a>
+                <a href="#"
+                   class="promo-link simple-link" onclick="ga('send','pageview','/click-procedi-offerta-{{ offer.name }}')">
+                <button class="btn-orange btn-big">Guarda l'offerta</button>
+               </a>
+            </div>
+        </div>
+    </div>
+        {%  endif %}
+{%  endfor %}
