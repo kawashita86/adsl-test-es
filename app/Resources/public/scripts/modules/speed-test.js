@@ -75,7 +75,7 @@ define(function (require, exports) {
         $.ajax({
             url: 'ajax/get-coverage-offers',
             type: 'POST',
-            data: {},
+            data: $('form#verifica-copertura').serialize(),
             dataType: 'JSON',
             success: function (data) {
                 if (!data.errors) {

@@ -60,10 +60,10 @@ class AjaxController extends Controller
 
         //check request for additional data
         $webservice = new ComparaWebService($this->get('csa_guzzle.client.copertura'));
-        $offers = $webservice->findVerify($request->get('city'), $request->get('particella'), $request->get('street'), $request->get('civic'));
-
+        $offers = $webservice->findVerify($request->get('comune'), $request->get('particella'), $request->get('indirizzo'), $request->get('civico'));
+        $error = ($offers === false);
         return new JsonResponse(array(
-            'error' => false,
+            'error' => $error,
             'template' => $this->renderView('controller/ajax/coverageOffers.html.twig', [
                 'offers' => $offers['providers']
             ]),

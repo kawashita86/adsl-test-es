@@ -104,13 +104,14 @@ class ComparaWebService
      */
     public function findVerify($city, $particella, $street, $civic)
     {
-        //return $this->mockVerify();
-        $response = $this->client->request('GET', 'find/verify',
+
+     //   return $this->mockVerify();
+        $response = $this->client->request('POST', 'find/verify',
             ['json' => [
                 'city' => $city,
                 'street' => $street,
-                'particella' => $street,
-                'civic' => $street
+                'particella' => $particella,
+                'civic' => $civic
             ]]);
         if ($response->getStatusCode() == 200) {
             $this->results = json_decode($response->getBody(), true);

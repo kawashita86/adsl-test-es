@@ -32,6 +32,7 @@ define(function (require, exports) {
             $('#indirizzo, #tipo_via').prop('disabled', false);
             if(localStorage.getItem('street')){
                 $('#indirizzo').val(localStorage.getItem('street'));
+                $('#particella').val(localStorage.getItem('particella'));
                 $('#civico').prop('disabled', false);
                 if(localStorage.getItem('civic')){
                     $('#civico').val(localStorage.getItem('civic'));
@@ -181,6 +182,7 @@ define(function (require, exports) {
             localStorage.setItem('particella', datum.particella);
             $('#indirizzo').val(datum.toponomastica);
             $('#tipo_via').val(datum.particella_ext);
+            $('#particella').val(datum.particella);
             $('#civico').prop('disabled', false);
         });
 
