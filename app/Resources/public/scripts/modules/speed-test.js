@@ -12,7 +12,7 @@ define(function (require, exports) {
         window.sc_bc = '0x000000';
         window.sc_hc = '0xA8D01E';
         window.sc_cc = '0xFF950D';
-        window.sc_w = 400;
+        window.sc_w = 300;
         window.sc_h = 250;
         window.sc_userid = 42887263;
         window.sc_location = 'IT';
@@ -125,7 +125,7 @@ define(function (require, exports) {
         $('#speedo-down-coverage').text(Number(dataSend.downloadSpeed / 1000).toFixed(2));
         $('#speedo-up-coverage').text(Number(dataSend.uploadSpeed / 1000).toFixed(2));
         $('#speedo-ip-coverage').text(dataSend.ipAddress);
-        $('#speedo-provider-coverage').html('<img src="/img/brands/' + dataSend.provider.toLowerCase() + '.png" />');
+        $('#speedo-provider-coverage').text(dataSend.provider);
     }
 
     function setResults(dataSend) {
@@ -137,7 +137,7 @@ define(function (require, exports) {
             $('#speedo-down').text(Number(dataSend.downloadSpeed / 1000).toFixed(2));
             $('#speedo-up').text(Number(dataSend.uploadSpeed / 1000).toFixed(2));
             $('#speedo-ip').text(dataSend.ipAddress);
-            $('#speedo-provider').html('<img src="/img/brands/' + dataSend.provider.toLowerCase() + '.png" />');
+            $('#speedo-provider').text(dataSend.provider);
             $(this).fadeIn('slow', function () {
                 $('html, body').animate({
                     scrollTop: $('.speed-test-sample').offset().top + 10

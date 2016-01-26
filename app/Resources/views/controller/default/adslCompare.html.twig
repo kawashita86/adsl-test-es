@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
-
+        {% block title %}Le migliori offerte su ADSL e Internet{% endblock %}
+        {% block meta %}
+            <meta name="keywords"
+                  content="offerte, perforamnce, internet, adsl, ADSL, broadband, velocità, download, upload">
+            <meta name="description"
+                  content="Le migliori offerte su ADSL eInternet ">
+        {% endblock %}
 {% block stylesheetsDist %}
     <style type="text/css">
         {% include 'public/styles/critical/index.css' ignore missing %}
@@ -29,193 +35,218 @@
 
 {% block body %}
 
-<div class="section-basic">
-    <div class="container">
-        <h1 class="orange mobile-title">Offerte ADSL: confronto tariffe Internet e Telefono</h1>
-        <br/>
-    </div>
-    <div class="container nopadding">
-        <div id="results-box" class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
-            {% for offer in offers %}
-              <!-- MOBILE OFFER -->
-                <div class="col-xs-12 hidden-sm hidden-md hidden-lg mob-rr">
-                    <div class="col-xs-5 col-xs-offset-7 col-sm-5 col-sm-offset-7 header">
-                        <a data-toggle="modal" href="#provider-details-{{ loop.index }}">
-                            <img data-original="{{ asset('img/brands/provider/'~offer.id_provider~'.png') }}" alt="Offerte Eolo: tariffe adsl e telefono e tariffe aggiornate" title="Eolo" class="lazy mob-logo">
-                        </a>
-                    </div>
-                    <div class="col-xs-7 col-sm-7 nopadding">
-                        <span class="orange x-mid offer-name">{{ offer.name }}</span>
-                        <br>
-                        <span class="smaller">{{ offer.type }}</span>
-                        <br>
-                        fino a <span class="green mid">{{ offer.speed_download }} Mbps</span>
-                        <br>
-                        <div class="text-center col-xs-12">
-                            <span style="visibility:hidden" class="midsmall red">Scade <strong class="small">OGGI!</strong>!</span>
+    <div class="section-basic">
+        <div class="container">
+            <h1 class="orange mobile-title">Offerte ADSL: confronto tariffe Internet e Telefono</h1>
+            <br/>
+        </div>
+        <div class="container nopadding">
+            <div id="results-box" class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                {% for offer in offers %}
+                    <!-- MOBILE OFFER -->
+                    <div class="col-xs-12 hidden-sm hidden-md hidden-lg mob-rr">
+                        <div class="col-xs-5 col-xs-offset-7 col-sm-5 col-sm-offset-7 header">
+                            <a data-toggle="modal" href="#provider-details-{{ loop.index }}">
+                                <img data-original="{{ asset('img/brands/provider/'~offer.id_provider~'.png') }}"
+                                     alt="Offerte : tariffe adsl" title="Offerte ADSL" class="lazy mob-logo">
+                            </a>
                         </div>
-                        <br>
-                        <div class="text-center col-xs-12 col-sm-12 mob-info-link" data-toggle="modal" href="#price-details-{{ offer.id }}">
-                            <span class="smaller">Maggiori informazioni</span>
+                        <div class="col-xs-7 col-sm-7 nopadding">
+                            <span class="orange x-mid offer-name">{{ offer.name }}</span>
+                            <br>
+                            <span class="smaller">{{ offer.type }}</span>
+                            <br>
+                            fino a <span class="green mid">{{ offer.speed_download }} Mbps</span>
+                            <br>
+                            <div class="text-center col-xs-12">
+                                <span style="visibility:hidden" class="midsmall red">Scade <strong
+                                            class="small">OGGI!</strong>!</span>
+                            </div>
+                            <br>
+                            <div class="text-center col-xs-12 col-sm-12 mob-info-link" data-toggle="modal"
+                                 href="#price-details-{{ offer.id }}">
+                                <span class="smaller">Maggiori informazioni</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-5 col-sm-5 text-center nopadding mob-cta-container">
+                            <span class="orange light-bold x-big">{{ offer.start_price }}<span
+                                        class="decimal"></span><sup
+                                        class="orange light-bold small">{{ offer.start_price_decimal }}</sup></span>
+                            <span class="small txt-light">€/mese</span>
+                            {% if(offer.promo_price_expire == "") %}
+                                <br>
+                                <div class="line-compressed nopadding col-xs-12">
+                                    <span class="light-bold small red">Valido PER SEMPRE!</span>
+                                </div>
+                                <br>
+                            {% endif %}
+                            <a href="{{ offer.link }}" target="_blank"
+                               onclick="ga('send','pageview','/click-procedi-offerta-{{ offer.id }}')"
+                               title="Procedi con {{ offer.name }}">
+                                <button class="btn-big cta mid">PROCEDI</button>
+                            </a>
                         </div>
                     </div>
-                    <div class="col-xs-5 col-sm-5 text-center nopadding mob-cta-container">
-                        <span class="orange light-bold x-big">{{ offer.start_price }}<span class="decimal"></span><sup class="orange light-bold small">{{ offer.start_price_decimal }}</sup></span>
-                        <span class="small txt-light">€/mese</span>
-                        {%  if(offer.promo_price_expire == "") %}
-                        <br>
-                        <div class="line-compressed nopadding col-xs-12">
-                            <span class="light-bold small red">Valido PER SEMPRE!</span>
-                        </div>
-                        <br>
-                        {%  endif %}
-                        <a href="{{ offer.link }}" target="_blank" onclick="ga('send','pageview','/click-procedi-offerta-{{ offer.id }}')" title="Procedi con {{ offer.name }}">
-                            <button class="btn-big cta mid">PROCEDI</button>
-                        </a>
-                    </div>
-            </div>
-                <!-- MOBILE OFFER -->
-            <div class="col-sm-12 col-lg-12 col-md-12 hidden-xs offer-box">
-                <!-- HEADER OFFER -->
-                <div class="row offer-box-head">
-                    <div class="col-md-2 col-lg-2 col-sm-5 col-xs-5 offer-logo">
-                        <img data-original="{{ asset('img/brands/provider/'~offer.id_provider~'.png') }}" class="lazy"
-                             alt="Offerte Infostrada: tariffe adsl e telefono e tariffe aggiornate" title="Infostrada" style="display: inline;">
-                    </div>
-                    <div class="col-md-5 col-lg-5 col-sm-7 col-xs-7 offer-name text-center">
-                        <a href="{{ offer.link }}" onclick="ga('send','pageview','/click-{{ offer.link }}')"
-                           alt="Procedi con {{ offer.name }}" title="Procedi {{ offer.name }}">{{ offer.name }}</a>
-                        <br>
-                        <span>{{ offer.type }}</span>
-                    </div>
+                    <!-- MOBILE OFFER -->
+                    <div class="col-sm-12 col-lg-12 col-md-12 hidden-xs offer-box">
+                        <!-- HEADER OFFER -->
+                        <div class="row offer-box-head">
+                            <div class="col-md-2 col-lg-2 col-sm-5 col-xs-5 offer-logo">
+                                <img data-original="{{ asset('img/brands/provider/'~offer.id_provider~'.png') }}"
+                                     class="lazy"
+                                     alt="Offerte: tariffe adssl" title="Offerte" style="display: inline;">
+                            </div>
+                            <div class="col-md-5 col-lg-5 col-sm-7 col-xs-7 offer-name text-center">
+                                <a href="{{ offer.link }}" onclick="ga('send','pageview','/click-{{ offer.link }}')"
+                                   alt="Procedi con {{ offer.name }}"
+                                   title="Procedi {{ offer.name }}">{{ offer.name }}</a>
+                                <br>
+                                <span>{{ offer.type }}</span>
+                            </div>
 
-                    <div class="col-md-3 col-lg-3 hidden-xs hidden-sm offer-support text-center">
-                        <span style="font-size:13px;">Servizi al cliente</span>
-                        <br>
-                    </div>
-                    <div data-toggle="popover" data-placement="left" title="" data-trigger="hover"
-                         data-content="La qualità viene determinata dalla media delle valutazioni dei clienti sull'efficienza del servizio di assistenza"
-                         class="col-md-2 col-lg-2 hidden-xs hidden-sm offer-experience"
-                         data-original-title="Qualità dell'assistenza">
-                        <a class="simple-link" style="color:#9EE200 !important;" href="#">
-                            <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                    class="fa fa-star-o"></i><i class="fa fa-star-o"></i>
-                        </a>
-                    </div>
-                </div>
-                <!-- WRAP OFFER --->
-                <div class="row offer-box-wrap">
-                    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 gauges">
-                        <div class="chart-gauge-box gauge-support text-center">
-                            <center>
-                            <div class="chart-gauge-download chart-gauge hidden-xs hidden-sm" data-speed="{{ offer.speed_download }}" data-label="Download" id="download-gauge-{{ loop.index }}">
-                                <br />
-                                <span >Calcolo velocità...</span>
-                                <br />
+                            <div class="col-md-3 col-lg-3 hidden-xs hidden-sm offer-support text-center">
+                                <span style="font-size:13px;">Servizi al cliente</span>
+                                <br>
                             </div>
-                            <span class="gauge-label">Download</span>
-                            <br>
-                            <span class="gauge-speed">{{ offer.speed_download }} Mbps</span>
-                            </center>
-                        </div>
-                        <div class="chart-gauge-box gauge-support text-center">
-                            <center>
-                            <div class="chart-gauge-upload chart-gauge hidden-xs hidden-sm" data-speed="{{ offer.speed_upload }}" data-label="Upload" id="upload-gauge-{{ loop.index }}">
-                                <br />
-                                <span>Calcolo velocità...</span>
-                                <br />
+                            <div data-toggle="popover" data-placement="left" title="" data-trigger="hover"
+                                 data-content="La qualità viene determinata dalla media delle valutazioni dei clienti sull'efficienza del servizio di assistenza"
+                                 class="col-md-2 col-lg-2 hidden-xs hidden-sm offer-experience"
+                                 data-original-title="Qualità dell'assistenza">
+                                <a class="simple-link" style="color:#9EE200 !important;" href="#">
+                                </a>
                             </div>
-                            <span class="gauge-label">Upload</span>
-                            <br>
-                            <span class="gauge-speed">{{ offer.speed_upload }} Mbps</span>
-                            </center>
                         </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 hidden-xs hidden-sm tlc-box price default-price">
-                        {%  if(offer.promo_price_expire == "standard") %}
-                        <span class="col-xs-12 m10 various" style="line-height: 32px;">Prezzo promo indicato</span>
-    			<span class="bold col-xs-12 midsmall nopadding line-compacted green">
+                        <!-- WRAP OFFER --->
+                        <div class="row offer-box-wrap">
+                            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 gauges">
+                                <div class="chart-gauge-box gauge-support text-center">
+                                    <center>
+                                        <div class="chart-gauge-download chart-gauge hidden-xs hidden-sm"
+                                             data-speed="{{ offer.speed_download }}" data-label="Download"
+                                             id="download-gauge-{{ loop.index }}">
+                                            <br/>
+                                            <span>Calcolo velocità...</span>
+                                            <br/>
+                                        </div>
+                                        <span class="gauge-label">Download</span>
+                                        <br>
+                                        <span class="gauge-speed">{{ offer.speed_download }} Mbps</span>
+                                    </center>
+                                </div>
+                                <div class="chart-gauge-box gauge-support text-center">
+                                    <center>
+                                        <div class="chart-gauge-upload chart-gauge hidden-xs hidden-sm"
+                                             data-speed="{{ offer.speed_upload }}" data-label="Upload"
+                                             id="upload-gauge-{{ loop.index }}">
+                                            <br/>
+                                            <span>Calcolo velocità...</span>
+                                            <br/>
+                                        </div>
+                                        <span class="gauge-label">Upload</span>
+                                        <br>
+                                        <span class="gauge-speed">{{ offer.speed_upload }} Mbps</span>
+                                    </center>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-lg-3 hidden-xs hidden-sm tlc-box price default-price">
+                                {% if(offer.promo_price_expire == "standard") %}
+                                    <span class="col-xs-12 m10 various"
+                                          style="line-height: 32px;">Prezzo promo indicato</span>
+                                    <span class="bold col-xs-12 midsmall nopadding line-compacted green">
     			     <span class="txt-light">Valido</span> PER SEMPRE!</span>
-                        <div data-toggle="tooltip" data-placement="bottom"
-                             title="Il prezzo mensile indicato &egrave; valido per tutta la durata del contratto" class="bottom-label">
-                            Che significa?
-                        </div>
-                        {% else %}
-                        <span class="col-xs-12 various" style="line-height: 32px;">Prezzo dopo {{ offer.promo_price_expire }}</span>
-                        <br />
-                        {{ offer.default_price }}<span class='decimal'>{{ offer.default_price_decimal }}</span> <span class="various">&euro;/mese</span>
-                        <div data-toggle="tooltip" data-placement="bottom"
-                             title="E' il prezzo dell'offerta al termine della promozione indicata" class="bottom-label">
-                            Che significa?
-                        </div>
-                        {% endif %}
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12 price tlc-box">
+                                    <div data-toggle="tooltip" data-placement="bottom"
+                                         title="Il prezzo mensile indicato &egrave; valido per tutta la durata del contratto"
+                                         class="bottom-label">
+                                        Che significa?
+                                    </div>
+                                {% else %}
+                                    <span class="col-xs-12 various"
+                                          style="line-height: 32px;">Prezzo dopo {{ offer.promo_price_expire }}</span>
+                                    <br/>
+                                    {{ offer.default_price }}<span
+                                        class='decimal'>{{ offer.default_price_decimal }}</span> <span class="various">&euro;/mese</span>
+                                    <div data-toggle="tooltip" data-placement="bottom"
+                                         title="E' il prezzo dell'offerta al termine della promozione indicata"
+                                         class="bottom-label">
+                                        Che significa?
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12 price tlc-box">
                         <span class="hidden-xs hidden-sm col-md-12 various "
                               style="line-height: 32px;">Prezzo promo</span>
-                        <span class="col-xs-12 promo-label bigger-label compactize">{{ offer.start_price }}<span class="decimal">{{ offer.start_price_decimal }}</span>
+                        <span class="col-xs-12 promo-label bigger-label compactize">{{ offer.start_price }}<span
+                                    class="decimal">{{ offer.start_price_decimal }}</span>
                             <span class="various" style="line-height: 32px;">€/mese</span></span>
-                        <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 hidden-md hidden-lg mobile-bottom-label"
-                             data-toggle="modal" href="#price-details-{{ loop.index }}">
-                            Maggiori informazioni
+                                <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 hidden-md hidden-lg mobile-bottom-label"
+                                     data-toggle="modal" href="#price-details-{{ loop.index }}">
+                                    Maggiori informazioni
+                                </div>
+                                <div class="hidden-xs hidden-sm bottom-label" data-toggle="modal"
+                                     href="#price-details-{{ loop.index }}">
+                                    Maggiori informazioni
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12 box-action">
+                                <a href="{{ offer.link }}"
+                                   class="promo-link simple-link" target="_blank"
+                                   onclick="ga('send','pageview','/click-procedi-offerta-{{ offer.id }}')">
+                                    <button data-env="tlc" data-id="{{ offer.id }}" class="btn-big active-now">Procedi
+                                    </button>
+                                </a>
+                            </div>
                         </div>
-                        <div class="hidden-xs hidden-sm bottom-label" data-toggle="modal" href="#price-details-{{ loop.index }}">
-                            Maggiori informazioni
+                        <span class="hidden expiration_date_wrapper" data-for="5">{{ offer.offer_expire }}</span>
+                    </div>
+                    <div id="price-details-{{ loop.index }}" class="modal" aria-hidden="true" aria-labeled-by="Details"
+                         tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                                    </button>
+                                    <h4 class="modal-title" id="myModalLabel">Maggiori informazioni sui costi
+                                        dell'offerta</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Informazioni su costi e opzioni dell'offerta</p>
+                                    <br>
+                                    <table class="table table-striped table-condensed table-hover">
+                                        <tbody>
+                                        <tr>
+                                            <th style="width:30%;">Costo di attivazione</th>
+                                            <td>{{ offer.activation_price }}€</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Modem incluso</th>
+                                            <td>{{ offer.modem }} </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Costo del modem (opzionale)</th>
+                                            <td>{{ offer.modem_price }}€</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Caselle e-mail incluse</th>
+                                            <td>{{ offer.extra_mail }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Indirizzo IP statico</th>
+                                            <td>{{ offer.extra_static_ip }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Altre informazioni</th>
+                                            <td>{{ offer.other_info }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12 box-action">
-                        <a href="{{ offer.link }}"
-                           class="promo-link simple-link" target="_blank" onclick="ga('send','pageview','/click-procedi-offerta-{{ offer.id }}')">
-                            <button data-env="tlc" data-id="{{ offer.id }}" class="btn-big active-now">Procedi</button>
-                        </a>
-                    </div>
-                </div>
-                <span class="hidden expiration_date_wrapper" data-for="5">{{ offer.offer_expire }}</span>
+                {% endfor %}
             </div>
-            <div id="price-details-{{ loop.index }}" class="modal" aria-hidden="true" aria-labeled-by="Details" tabindex="-1">
-                <div class="modal-dialog" style="width:40%;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title" id="myModalLabel">Maggiori informazioni sui costi dell'offerta</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>Informazioni su costi e opzioni dell'offerta</p>
-                            <br>
-                            <table class="table table-striped table-condensed table-hover">
-                                <tbody><tr>
-                                    <th style="width:30%;">Costo di attivazione</th>
-                                    <td>{{ offer.activation_price }}€</td>
-                                </tr>
-                                <tr>
-                                    <th>Modem incluso</th>
-                                    <td>{{ offer.modem }} </td>
-                                </tr>
-                                <tr>
-                                    <th>Costo del modem (opzionale)</th>
-                                    <td>{{ offer.modem_price }}€</td>
-                                </tr>
-                                <tr>
-                                    <th>Caselle e-mail incluse</th>
-                                    <td>{{  offer.extra_mail }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Indirizzo IP statico</th>
-                                    <td>{{  offer.extra_static_ip }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Altre informazioni</th>
-                                    <td>{{ offer.other_info }}</td>
-                                </tr>
-                                </tbody></table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {%  endfor %}
         </div>
-    </div>
 
-</div>
+    </div>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 {% endblock %}
