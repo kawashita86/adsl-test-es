@@ -52,7 +52,6 @@
         {% include 'footer.html.twig' %}
         {% block javascripts %}
             <script type="text/javascript"> window.baseUrl = "{{ app.request.getSchemeAndHttpHost() }}"</script>
-            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
             {% if app.environment == 'node' %}
             <script type="text/javascript" src="/scripts/config.js"></script>
             <script type="text/javascript" data-main="main" src="/bower_components/requirejs/require.js"></script>

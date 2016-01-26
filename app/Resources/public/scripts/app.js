@@ -40,8 +40,10 @@ define(function (require, exports) {
             }
         }
 
-        window.google.charts.load('current', {packages: ['gauge']});
-        window.google.charts.setOnLoadCallback(drawChart);
+        if(typeof (window.google) !== 'undefined') {
+            window.google.charts.load('current', {packages: ['gauge']});
+            window.google.charts.setOnLoadCallback(drawChart);
+        }
 
         utility.generateChartAvgHourly();
     };
