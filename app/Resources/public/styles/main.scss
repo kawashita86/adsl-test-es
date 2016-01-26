@@ -101,10 +101,14 @@
     text-align: center !important;
     margin-bottom: 10px;
   }
+
+  .mobile-title {
+    font-size: 21px!important;
+  }
 }
 
 @media #{$small_mobile} {
   .mobile-title {
-    font-size:18px;
+    font-size:18px!important;
   }
   }

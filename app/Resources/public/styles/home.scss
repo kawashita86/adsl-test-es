@@ -450,3 +450,17 @@
     }
   }
 }
+
+#{$small_mobile} {
+  .btn-big {
+    font-size: 16px;
+  }
+
+  body {
+    font-size: 13px;
+  }
+
+  .input-field.big-input.tt-hint {
+    background: rgba(255, 255, 255, 0) none repeat scroll 0 0!important;
+  }
+}
