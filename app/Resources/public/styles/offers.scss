@@ -252,6 +252,13 @@ div#coverage-offers {
       }
     }
     }
+
+  #coverage-offers
+    .mob-rr
+      .mob-cta-container
+        .cta {
+          top:0!important;
+      }
   }
   .mob-rr{
     min-height:120px;
@@ -422,7 +429,6 @@ div#coverage-offers {
       .cta {
         position: absolute;
         width: 130px;
-        border-radius: 0!important;
         right: -20px;
         height: 33px;
         top: 50px;
@@ -472,14 +478,83 @@ div#coverage-offers {
 @media #{$small_tablet}{
   .mob-rr {
     min-height: 120px;
-    width: 70%;
+    width: 95%;
     padding: 5px 5px 5px 10px;
-    margin: 18px 15%;
+    margin: 18px 2%;
     background: #fafafa;
     -webkit-box-shadow: 0 1px 2px #aeaeae;
     -moz-box-shadow: 0 1px 2px #aeaeae;
     -o-box-shadow: 0 1px 2px #aeaeae;
     -ms-box-shadow: 0 1px 2px #aeaeae;
     box-shadow: 0 1px 2px #aeaeae;
+  }
+
+  #coverage-offers {
+    .mob-rr {
+      .mob-cta-container {
+
+        .cta {
+          position: absolute;
+          width: 130px;
+          right: -20px;
+          height: 33px;
+          line-height: 0;
+          box-shadow: 0 1px 1px #aeaeae;
+          border: 0 !important;
+          padding: 20px 10px;
+          top: 0;
+
+          &.alternative-cta {
+            top: 45px!important;
+          }
+
+          &.big-cta {
+            width: 150px;
+            height: 40px;
+            font-size: 28px;
+            right: -23px;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+@media #{$small_mobile} {
+
+  #coverage-offers {
+    .mob-rr {
+      .mob-cta-container {
+        margin-top: 13.5px;
+
+        .top-promo {
+          margin-top: 42.5px
+        }
+
+        .cta {
+          position: absolute;
+          width: 130px;
+          right: -20px;
+          height: 33px;
+          line-height: 0;
+          box-shadow: 0 1px 1px #aeaeae;
+          border: 0 !important;
+          padding: 20px 10px;
+          top: 0;
+
+          &.alternative-cta {
+            top: 45px!important;
+          }
+
+          &.big-cta {
+            width: 150px;
+            height: 40px;
+            font-size: 28px;
+            right: -23px;
+          }
+        }
+      }
+    }
   }
 }

@@ -51,7 +51,7 @@ define(function (require, exports) {
             data: $('form#verifica-copertura').serialize(),
             dataType: 'JSON',
             success: function(data){
-                if(!data.errors){
+                if(!data.error){
                     $('#coverage-results-container').fadeOut('slow', function(){
                         $('#cover-result-title').text('Ecco i risultati del tuo test').addClass('orange bold').css('font-size', '28px');
 
@@ -73,7 +73,7 @@ define(function (require, exports) {
                     });
 
                 } else {
-                    console.log(data);
+                    $.notify({ message: 'Siamo spiacenti ma la verifica non ha dato risultati'}, {placement: { from: 'bottom' }, type: 'danger'});
                 }
             },
             errors: function(){
@@ -106,6 +106,9 @@ define(function (require, exports) {
                 },
                 indirizzo: {
                     required: true
+                },
+                civico: {
+                    required: true,
                 }
             },
             messages: {
@@ -127,7 +130,8 @@ define(function (require, exports) {
                 email: "Inserire un indirizzo email",
                 privacy: "Accettare l'informativa sulla privacy",
                 comune: "Inserire il comune",
-                indirizzo: "Inserire l'indirizzo"
+                indirizzo: "Inserire l'indirizzo",
+                civico: "Inserire il numero civico"
             },
             errorPlacement: function (error) {
                 $.notify({message: error.text()}, {placement: { from: 'bottom' }, type: 'danger'});

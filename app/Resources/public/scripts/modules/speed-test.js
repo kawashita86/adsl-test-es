@@ -78,7 +78,7 @@ define(function (require, exports) {
             data: $('form#verifica-copertura').serialize(),
             dataType: 'JSON',
             success: function (data) {
-                if (!data.errors) {
+                if (!data.error) {
                     $('#coverage-results-container').fadeOut('slow', function () {
                         $('#cover-result-title').text('Ecco i risultati del tuo test').addClass('orange bold').css('font-size', '28px');
                         $('#speed-test-modal').modal('toggle');
@@ -101,7 +101,7 @@ define(function (require, exports) {
                     });
 
                 } else {
-                   $.notify({ message: 'Qualcosa è andato storto durante il test'}, {placement: { from: 'bottom' }, type: 'danger'});
+                   $.notify({ message: 'Siamo spiacenti ma la ricerca non ha dato risultati'}, {placement: { from: 'bottom' }, type: 'danger'});
                 }
             },
             errors: function () {

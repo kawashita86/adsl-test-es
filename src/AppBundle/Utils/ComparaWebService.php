@@ -8,6 +8,8 @@
  */
 namespace AppBundle\Utils;
 
+use GuzzleHttp\Exception\RequestException;
+
 class ComparaWebService
 {
 
@@ -39,11 +41,15 @@ class ComparaWebService
         if (empty($city))
             return array('result' => '');
 
-        $response = $this->client->request('POST', 'find/city', ['json' => ['city' => trim($city)]]);
-        if ($response->getStatusCode() == 200) {
-            return json_decode($response->getBody(), true);
-        } else {
-            return array();
+        try {
+            $response = $this->client->request('POST', 'find/city', ['json' => ['city' => trim($city)]]);
+            if ($response->getStatusCode() == 200) {
+                return json_decode($response->getBody(), true);
+            } else {
+                return [];
+            }
+        } catch(RequestException $e) {
+            return [];
         }
     }
 
@@ -57,15 +63,19 @@ class ComparaWebService
         if (empty($street))
             return array('result' => '');
 
-        $response = $this->client->request('POST', 'find/street',
-            ['json' => [
-                'city' => $city,
-                'street' => $street
-            ]]);
-        if ($response->getStatusCode() == 200) {
-            return json_decode($response->getBody(), true);
-        } else {
-            return array();
+        try {
+            $response = $this->client->request('POST', 'find/street',
+                ['json' => [
+                    'city' => $city,
+                    'street' => $street
+                ]]);
+            if ($response->getStatusCode() == 200) {
+                return json_decode($response->getBody(), true);
+            } else {
+                return [];
+            }
+        } catch(RequestException $e) {
+            return [];
         }
     }
 
@@ -81,17 +91,21 @@ class ComparaWebService
         if (empty($civic))
             return array('result' => '');
 
-        $response = $this->client->request('POST', 'find/civic',
-            ['json' => [
-                'city' => trim($city),
-                'street' => trim($street),
-                'civic' => trim($civic),
-                'particella' => trim($particella)
-            ]]);
-        if ($response->getStatusCode() == 200) {
-            return json_decode($response->getBody(), true);
-        } else {
-            return array();
+        try {
+            $response = $this->client->request('POST', 'find/civic',
+                ['json' => [
+                    'city' => trim($city),
+                    'street' => trim($street),
+                    'civic' => trim($civic),
+                    'particella' => trim($particella)
+                ]]);
+            if ($response->getStatusCode() == 200) {
+                return json_decode($response->getBody(), true);
+            } else {
+                return [];
+            }
+        }  catch(RequestException $e) {
+            return false;
         }
     }
 
@@ -105,19 +119,23 @@ class ComparaWebService
     public function findVerify($city, $particella, $street, $civic)
     {
 
-     //   return $this->mockVerify();
-        $response = $this->client->request('POST', 'find/verify',
-            ['json' => [
-                'city' => $city,
-                'street' => $street,
-                'particella' => $particella,
-                'civic' => $civic
-            ]]);
-        if ($response->getStatusCode() == 200) {
-            $this->results = json_decode($response->getBody(), true);
-            return $this->formatVerifyResults();
-        } else {
-            return array();
+        try {
+            //   return $this->mockVerify();
+            $response = $this->client->request('POST', 'find/verify',
+                ['json' => [
+                    'city' => $city,
+                    'street' => $street,
+                    'particella' => $particella,
+                    'civic' => $civic
+                ]]);
+            if ($response->getStatusCode() == 200) {
+                $this->results = json_decode($response->getBody(), true);
+                return $this->formatVerifyResults();
+            } else {
+                return [];
+            }
+        } catch(RequestException $e) {
+            return false;
         }
     }
 
@@ -127,15 +145,20 @@ class ComparaWebService
      */
     public function getComparator()
     {
-        // @todo change tlc with adsl
-        $response = $this->client->request('GET', 'tlc/q', ['query' => ['sort' => 'velocita']]);
+        try {
 
-        if ($response->getStatusCode() == 200) {
-            $this->results = json_decode($response->getBody(), true);
-            return $this->formatOffersResults();
+            // @todo change tlc with adsl
+            $response = $this->client->request('GET', 'tlc/q', ['query' => ['sort' => 'velocita']]);
 
-        } else {
-            return array();
+            if ($response->getStatusCode() == 200) {
+                $this->results = json_decode($response->getBody(), true);
+                return $this->formatOffersResults();
+
+            } else {
+                return array();
+            }
+        } catch(RequestException $e) {
+            return false;
         }
     }
 
